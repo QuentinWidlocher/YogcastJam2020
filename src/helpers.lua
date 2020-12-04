@@ -148,3 +148,13 @@ function screen_shake()
    shake=0
  end
 end
+
+---A function that makes sure a number doesn't go outside certain bounds
+--@param val number value to clamp
+--@param a number lower bound
+--@param b number upper bound
+function clamp(val, a, b)
+    if val < a then val = a end
+    if val > b then val = b end
+    return val
+end

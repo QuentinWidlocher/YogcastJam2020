@@ -5,4 +5,5 @@ function _init()
     printh("", "log.txt", true) -- clear the log file
     init_globals()
     init_camera()
+    init_player()
 end
