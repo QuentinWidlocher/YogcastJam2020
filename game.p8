@@ -7,15 +7,20 @@ __lua__
 #include src/helpers.lua
 
 #include src/models/entity.model.lua
+#include src/models/game-object.model.lua
+#include src/models/player.model.lua
 #include src/models/camera.model.lua
 
 #include src/init/camera.init.lua
+#include src/init/player.init.lua
 #include src/init/main.init.lua
 
 #include src/update/camera.update.lua
+#include src/update/player.update.lua
 #include src/update/main.update.lua
 
 #include src/draw/debug.draw.lua
+#include src/draw/player.draw.lua
 #include src/draw/main.draw.lua
 
 __gfx__
