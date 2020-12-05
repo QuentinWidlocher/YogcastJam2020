@@ -1,6 +1,5 @@
 function update_player()
-    player_input()
-    player_move()
+    player:update()
 end
 
 function player_input()
