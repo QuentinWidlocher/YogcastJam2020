@@ -27,6 +27,8 @@ Player = GameObject:new({
     shootingCooldown = { value = 0, max = 8 }, -- can shoot when value == max
     shootingType = DefaultShootingType,
 
+    movingType = DefaultPlayerMovingType,
+
     flameCounter = 0,
     flameSprite = SPRITES.FLAMES.OFF,
 
@@ -98,37 +100,7 @@ function Player:shoot()
 end
 
 function Player:move()
-    --Acceleration
-    self.vx += self.ax * self.speed
-    self.vy += self.ay * self.speed
-
-    --Velocity
-    self.vx = clamp(self.vx, -self.maxSpeed, self.maxSpeed)
-    self.vy = clamp(self.vy, -self.maxSpeed, self.maxSpeed)
-
-    --Slow down if not pressing anything
-    if not self.movingx and self.vx != 0 then
-        self.vx -= sgn(self.vx) * self.friction
-        --Setting the velocity to 0 if it's as close as it can get to zero, to ensure the value doesn't fluctuate
-        if abs(self.vx) <= self.friction / 2 then self.vx = 0 end
-    end
-    if not self.movingy and self.vy != 0 then
-        self.vy -= sgn(self.vy) * self.friction
-        --Setting the velocity to 0 if it's as close as it can get to zero, to ensure the value doesn't fluctuate
-        if abs(self.vy) <= self.friction / 2 then self.vy = 0 end
-    end
-
-    if self.vx < 0 then self.top_left_sprite = SPRITES.PLAYER.LEAN_LEFT
-    elseif self.vx > 0 then self.top_left_sprite = SPRITES.PLAYER.LEAN_RIGHT
-    else self.top_left_sprite = SPRITES.PLAYER.STILL end
-
-    --Applying velocity
-    self.x += self.vx
-    self.y += self.vy
-
-    --Ensuring the player doesn't go off screen
-    self.x = clamp(player.x, 0, SCREEN_SIZE - self.w)
-    self.y = clamp(player.y, 0, SCREEN_SIZE - self.h)
+    self.movingType:move(self)
 end
 
 function Player:hurt(dmg)
