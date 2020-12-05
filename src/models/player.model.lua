@@ -10,18 +10,25 @@ Player = GameObject:new({
     speed = 2,
     w = fromOct(1),
     h = fromOct(1),
+
+    movingx = false,
+    movingy = false,
+
     maxSpeed = 4,
     friction = 2,
     vx = 0,
     vy = 0,
 
-    hp = { value = 100, max = 100 },
-    hurtCooldown = { value = 20, max = 20 }
+    hp = { value = 100, max = 100 }, -- can be damaged when value == max
+    hurtCooldown = { value = 20, max = 20 },
+
+    shootingCooldown = { value = 0, max = 8 } -- can shoot when value == max
 })
 
 function Player:update()
     self:getInput()
     self:move()
+    self:shoot()
 
     self.hurtCooldown.value = min(self.hurtCooldown.value + 1, self.hurtCooldown.max)
 end
@@ -46,6 +53,30 @@ function Player:getInput()
     if btn(GAMEPAD.RIGHT) then
         self.ax += 1
         self.movingx = true
+    end
+end
+
+function Player:shoot()
+    self.shootingCooldown.value = min(self.shootingCooldown.value + 1, self.shootingCooldown.max)
+
+    if (btn(GAMEPAD.X)) and self.shootingCooldown.value == self.shootingCooldown.max then
+
+        -- add the bullet to the pool so it'll be drawn and updated
+        local newBullet = Bullet:new({
+            x = (self.x + (self.w/2) ) - (Bullet.w/2),
+            y = self.y - (Bullet.h),
+            playerVersion = true,
+            -- lifespan = self.shootingCooldown.max * 10,
+            speed = 2,
+            dir = {
+                x = (self.vx / self.speed)/4,
+                y = -1,
+            }
+        })
+        newBullet:init()
+        add(bulletPool, newBullet)
+
+        self.shootingCooldown.value = 0
     end
 end
 

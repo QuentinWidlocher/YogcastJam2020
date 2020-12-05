@@ -23,6 +23,7 @@ function BasicEnemy:shoot()
 
     if self.shootingCooldown.value >= self.shootingCooldown.max then
         local pos = self:getCenteredPos()
+        local targetPos = player:getCenteredPos()
 
         -- add the bullet to the pool so it'll be drawn and updated
         add(bulletPool, Bullet:new({
@@ -32,8 +33,8 @@ function BasicEnemy:shoot()
             lifespan = self.shootingCooldown.max * 10,
             speed = 1,
             dir = normalize({
-                x = player.x - self.x,
-                y = player.y - self.y,
+                x = targetPos.x - pos.x,
+                y = targetPos.y - pos.y,
             })
         }))
 

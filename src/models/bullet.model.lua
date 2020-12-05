@@ -7,7 +7,7 @@
 Bullet = GameObject:new({
     top_left_sprite = 66,
     enemyVersionSprite = 66,
-    playerVersionSprite = 66,
+    playerVersionSprite = 2,
     playerVersion = true,
 
     speed = 2,

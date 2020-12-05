@@ -8,7 +8,7 @@ function update_bullets()
     for i, bullet in pairs(bulletPool) do
         bullet:update()
 
-        if (bullet:collide(player)) then
+        if (not bullet.playerVersion and bullet:collide(player)) then
             player:hurt(bullet.dmg)
             deli(bulletPool, i)
         end
