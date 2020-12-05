@@ -6,10 +6,11 @@ function _draw()
 end
 
 function draw_game()
+    screen_shake()
     draw_bgParticles()
     draw_enemies()
     draw_player()
     draw_bullets()
-    screen_shake()
+    draw_bossbar()
     draw_debug(false)
 end
