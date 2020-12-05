@@ -24,7 +24,7 @@ Player = GameObject:new({
     hurtCooldown = { value = 20, max = 20 },
 
     dmg = 1,
-    shootingCooldown = { value = 0, max = 8 }, -- can shoot when value == max
+    shootingCooldown = { value = 0, max = 4 }, -- can shoot when value == max
     shootingType = DefaultShootingType,
 
     flameCounter = 0,
@@ -73,7 +73,7 @@ function Player:shoot()
         -- add the bullet to the pool so it'll be drawn and updated
         local newBullet = Bullet:new({
             playerVersion = true,
-            speed = 2,
+            speed = 3,
         })
         newBullet:init()
 

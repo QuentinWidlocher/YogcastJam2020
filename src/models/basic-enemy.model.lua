@@ -92,5 +92,6 @@ function BasicEnemy:hurt(dmg)
     if self.hp.value <= 0 then
         self.phase = self.phase - 1
         self.hp.value = self.hp.max
+        shake = 1.5
     end
 end
