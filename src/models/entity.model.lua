@@ -30,10 +30,28 @@ function Entity:collide(other_entity)
 end
 
 ---@return string
-function Entity:to_string()
+function Entity:toString()
 	local string = "Printing ".. self.__type .."\n"
 	for key, value in pairs(self) do
 		string = string..key.." = "..value.."\n"
 	end
 	return string
+end
+
+---@return Vector
+function Entity:getCenteredPos()
+	return {
+		x = self.x + (self.w / 2),
+		y = self.y + (self.h / 2)
+	}
+end
+
+---@return boolean
+function Entity:isInsideScreen()
+	return self:collide({
+		x = main_camera.x + self.w,
+		y = main_camera.y + self.h,
+		w = SCREEN_SIZE - flr(self.w*2),
+		h = SCREEN_SIZE - flr(self.h*2)
+	})
 end

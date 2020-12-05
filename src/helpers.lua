@@ -90,6 +90,17 @@ function getSpriteCoord(index)
     return {x = x, y = y}
 end
 
+---@param x number
+---@return boolean
+function isInsideScreen(x)
+    return x > 0 and x < SCREEN_SIZE
+end
+
+---@return Vector
+function getRandomDirection()
+    return { x = 1 - rnd(2), y = 1 - rnd(2) }
+end
+
 -- === Moses === --
 
 M = {}
@@ -139,11 +150,11 @@ function screen_shake()
  local amt = 32
  local offset_x=amt/2-rnd(amt)
  local offset_y=amt/2-rnd(amt)
- offset_x*=shake
- offset_y*=shake
+ offset_x = offset_x * shake
+ offset_y = offset_y * shake
   
  camera(offset_x,offset_y)
- shake*=fade
+ shake = shake * fade
  if shake<0.05 then
    shake=0
  end
@@ -158,3 +169,6 @@ function clamp(val, a, b)
     if val > b then val = b end
     return val
 end
+
+function inc(x, v) return x + v end
+function invert(x) return -x end
