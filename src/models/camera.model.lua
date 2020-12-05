@@ -6,6 +6,7 @@
 Camera = Entity:new({
     speed = 1,
     margin = 0,
+    __type = "Camera",
 })
 
 ---@param object Entity

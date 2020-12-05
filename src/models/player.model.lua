@@ -25,10 +25,12 @@ Player = GameObject:new({
 
     dmg = 1,
     shootingCooldown = { value = 0, max = 8 }, -- can shoot when value == max
-    shootingType = TrishotShootingType,
+    shootingType = DefaultShootingType,
 
     flameCounter = 0,
-    flameSprite = SPRITES.FLAMES.OFF
+    flameSprite = SPRITES.FLAMES.OFF,
+
+    __type = "Player",
 })
 
 function Player:update()
@@ -75,11 +77,13 @@ function Player:shoot()
         })
         newBullet:init()
 
+        -- from the cannon
         self.shootingType.from = {
             x = (self.x + (self.w/2) ) - (Bullet.w/2),
             y = self.y - (Bullet.h),
         }
 
+        -- straight up but lean with the ship
         self.shootingType.dir = {
             x = (self.vx / self.speed)/4,
             y = -1,
