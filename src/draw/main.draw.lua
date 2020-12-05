@@ -12,5 +12,5 @@ function draw_game()
     draw_player()
     draw_bullets()
     draw_bossbar()
-    draw_debug(true)
+    draw_debug(false)
 end

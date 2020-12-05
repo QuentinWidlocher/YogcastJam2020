@@ -11,7 +11,7 @@ function DefaultEnemyMovingType:move(enemy)
     end
 
     -- change direction after cooldown
-    if enemy.movingCooldown.value >= enemy.shootingCooldown.max then
+    if enemy.movingCooldown.value >= enemy.movingCooldown.max then
         changeDirection()
     end
 

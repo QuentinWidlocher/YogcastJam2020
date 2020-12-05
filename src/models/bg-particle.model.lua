@@ -12,7 +12,7 @@ function BgParticle:init()
 end
 
 function BgParticle:update()
-    self.y += self.speed
-    self.lifetime -= 1
+    self.y = self.y + self.speed
+    self.lifetime = self.lifetime - 1
 end
 

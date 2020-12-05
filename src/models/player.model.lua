@@ -50,19 +50,19 @@ function Player:getInput()
     self.movingx = false
     self.movingy = false
     if btn(GAMEPAD.UP) then
-        self.ay -= 1
+        self.ay = self.ay - 1
         self.movingy = true
     end
     if btn(GAMEPAD.DOWN) then
-        self.ay += 1
+        self.ay = self.ay + 1
         self.movingy = true
     end
     if btn(GAMEPAD.LEFT) then
-        self.ax -= 1
+        self.ax = self.ax - 1
         self.movingx = true
     end
     if btn(GAMEPAD.RIGHT) then
-        self.ax += 1
+        self.ax = self.ax + 1
         self.movingx = true
     end
 end
@@ -113,7 +113,7 @@ function Player:hurt(dmg)
 end
 
 function Player:updateFlames()
-    self.flameCounter += 1
+    self.flameCounter = self.flameCounter + 1
     if self.flameCounter % 4 < 2 then
         self.flameSprite = SPRITES.FLAMES.OFF
     else

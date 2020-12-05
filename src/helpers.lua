@@ -48,7 +48,7 @@ end
 ---@param y number
 function cooltext(text,x,y)
     print(text,x,y+1,6)
-    print(text,x,y,5)
+    print(text,x,y,7)
 end
 
 ---@param text string
