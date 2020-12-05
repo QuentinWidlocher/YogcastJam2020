@@ -11,5 +11,5 @@ function draw_game()
     draw_player()
     draw_bullets()
     screen_shake()
-    draw_debug(false)
+    draw_debug(true)
 end

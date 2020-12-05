@@ -1,7 +1,7 @@
 ---@class TrishotShootingType : ShootingType
 ---@field public from Vector
 ---@field public dir Vector
-TrishotShootingType = ShootingType
+TrishotShootingType = shallowCopy(ShootingType)
 
 ---@param bullet Bullet
 function TrishotShootingType:shoot(bullet)

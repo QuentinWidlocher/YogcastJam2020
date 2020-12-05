@@ -9,11 +9,12 @@
 BasicEnemy = GameObject:new({
     speed = 1,
     dir = getRandomDirection(),
-    hp = { value = 10, max = 10 },
+    hp = { value = 20, max = 20 },
     movingCooldown = { value = 0, max = 10 },
     shootingCooldown = { value = 0, max = 10 },
     hurtCooldown = { value = 0, max = 5 },
-    shootingType = DefaultShootingType
+    shootingType = HomingShootingType,
+    __type = "BasicEnemy",
 })
 
 function BasicEnemy:update()

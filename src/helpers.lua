@@ -106,6 +106,13 @@ function getRandomDirection(forceToEight)
     end
 end
 
+---@param v1 Vector
+---@param v2 Vector
+---@return number
+function getVectorDistance(v1, v2)
+    return sqrt(((v1.x - v2.x)^2)+((v1.y - v2.y)^2))
+end
+
 ---@param v Vector
 ---@return number
 function getVectorLength(v)
@@ -139,12 +146,33 @@ function rotateVector(v, rad)
     }
 end
 
+function vectorToString(v)
+    local string = "Vector {\n"
+    string = string.."\tx = "..tostr(v.x).."\n"
+    string = string.."\ty = "..tostr(v.y).."\n"
+    string = string.."}"
+    return string
+end
+
 ---@param t table
 ---@return table
 function shallowCopy(t)
     local u = { }
     for k, v in pairs(t) do u[k] = v end
     return setmetatable(u, getmetatable(t))
+end
+
+---@param a table
+---@param cmp function
+---@return table
+function sort(a,cmp)
+  for i=1,#a do
+    local j = i
+    while j > 1 and cmp(a[j-1],a[j]) do
+        a[j],a[j-1] = a[j-1],a[j]
+    j = j - 1
+    end
+  end
 end
 
 -- === Moses === --

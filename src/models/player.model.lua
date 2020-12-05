@@ -25,10 +25,12 @@ Player = GameObject:new({
 
     dmg = 1,
     shootingCooldown = { value = 0, max = 8 }, -- can shoot when value == max
-    shootingType = TrishotShootingType,
+    shootingType = DefaultShootingType,
 
     flameCounter = 0,
-    flameSprite = SPRITES.FLAMES.OFF
+    flameSprite = SPRITES.FLAMES.OFF,
+
+    __type = "Player",
 })
 
 function Player:update()

@@ -25,6 +25,4 @@ function update_bullets()
 
     local function deleteBullet(i) deli(bulletPool, i) end
     foreach(bulletsToDelete, deleteBullet)
-
-    log(#bulletPool)
 end
