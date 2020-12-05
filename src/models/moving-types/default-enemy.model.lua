@@ -11,12 +11,12 @@ function DefaultEnemyMovingType:move(enemy)
     end
 
     -- change direction after cooldown
-    if enemy.movingCooldown.value >= enemy.shootingCooldown.max then
+    if enemy.movingCooldown.value >= enemy.movingCooldown.max then
         changeDirection()
     end
 
     -- Reverse direction if going oustide the screen
-    if not enemy:isInsideScreen() then
+    if not enemy:isInsideAllowedZone() then
         enemy.dir = M.map(enemy.dir, invert)
     end
     

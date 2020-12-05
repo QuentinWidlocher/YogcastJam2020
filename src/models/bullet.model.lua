@@ -13,7 +13,7 @@ Bullet = GameObject:new({
 
     speed = 2,
     dir = { x = 0, y = 0 },
-    life = 50,
+    life = 100,
     dmg = 1,
 
     w = fromOct(1),

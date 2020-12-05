@@ -1,12 +1,15 @@
 ---@class TrishotShootingType : ShootingType
----@field public from Vector
----@field public dir Vector
 TrishotShootingType = shallowCopy(ShootingType)
+TrishotShootingType.cooldown = { value = 0, max = 20 }
+TrishotShootingType.speed = 1
+TrishotShootingType.sprite = 69
 
 ---@param bullet Bullet
 function TrishotShootingType:shoot(bullet)
     bullet.x = self.from.x
     bullet.y = self.from.y
+    bullet.speed = self.speed
+    bullet.top_left_sprite = self.sprite
     bullet.dir = normalize(self.dir)
 
     local rad = 3.14/3.5

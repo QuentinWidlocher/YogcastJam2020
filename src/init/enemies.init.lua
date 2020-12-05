@@ -9,7 +9,7 @@ function init_enemies()
         h = fromOct(2),
         x = SCREEN_SIZE / 2,
         y = SCREEN_SIZE / 4,
-        shootingType = BulletstreamShootingType
+        shootingType = shallowCopy(TrishotShootingType)
     })
 
     add(enemies, enemy)

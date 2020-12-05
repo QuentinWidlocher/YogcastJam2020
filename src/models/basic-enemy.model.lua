@@ -3,7 +3,7 @@
 ---@field public dir Vector
 ---@field public hp Gauge
 ---@field public movingCooldown Gauge
----@field public shootingCooldown Gauge
+---@field public shootingType.cooldown Gauge
 ---@field public bulletPool Bullet[]
 ---@field public shootingType DefaultShootingType
 BasicEnemy = GameObject:new({
@@ -11,10 +11,9 @@ BasicEnemy = GameObject:new({
     dir = getRandomDirection(),
     hp = { value = 100, max = 100 },
     movingCooldown = { value = 0, max = 10 },
-    shootingCooldown = { value = 0, max = 10 },
     hurtCooldown = { value = 0, max = 5 },
-    shootingType = DefaultShootingType,
-    movingType = DefaultEnemyMovingType,
+    shootingType = shallowCopy(DefaultShootingType),
+    movingType = shallowCopy(DefaultEnemyMovingType),
     phase = 5,
     __type = "BasicEnemy",
 })
@@ -30,27 +29,22 @@ function BasicEnemy:init()
 end
 
 function BasicEnemy:shoot()
-    self.shootingCooldown.value = self.shootingCooldown.value + 1
+    self.shootingType.cooldown.value = self.shootingType.cooldown.value + 1
 
-    if self.shootingCooldown.value >= self.shootingCooldown.max then
+    if self.shootingType.cooldown.value >= self.shootingType.cooldown.max then
         local pos = self:getCenteredPos()
         local targetPos = player:getCenteredPos()
 
         self.shootingType.from = pos
         self.shootingType.dir = subtractVectors(pos, targetPos)
 
-        local bullet = Bullet:new(
-            {
-                speed = 1,
-                playerVersion = false,
-            }
-        )
+        local bullet = Bullet:new({ playerVersion = false })
         bullet:init()
 
         self.shootingType:shoot(bullet)
 
         -- reset the cooldown
-        self.shootingCooldown.value = 0
+        self.shootingType.cooldown.value = 0
     end
 end
 
@@ -70,4 +64,14 @@ function BasicEnemy:hurt(dmg)
         self.hp.value = self.hp.max
         shake = 1.5
     end
+end
+
+---@return boolean
+function BasicEnemy:isInsideAllowedZone()
+	return self:collide({
+		x = main_camera.x + (self.w*2),
+		y = main_camera.y + self.h,
+		w = SCREEN_SIZE - (self.w*4),
+		h = SCREEN_SIZE/2 - self.h
+	})
 end

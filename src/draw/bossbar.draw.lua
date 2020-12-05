@@ -4,6 +4,8 @@ function draw_bossbar()
     rectfill(1,1,SCREEN_SIZE-2,1,8)
     rectfill(1,1,(SCREEN_SIZE - 2)*(enemies[1].hp.value+1)/enemies[1].hp.max,1,11)
 
+    print("eNEMY", SCREEN_SIZE - #"eNEMY"*4, 4, 12)
+
     --Phase counters
     local cell_size = 5
     for i = 1, 5 do
