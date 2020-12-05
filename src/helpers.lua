@@ -132,6 +132,21 @@ function subtractVectors(v1, v2)
     }
 end
 
+function rotateVector(v, rad)
+    return {
+        x = v.x * cos(rad) - v.y * sin(rad),
+        y = v.x * sin(rad) + v.y * cos(rad)
+    }
+end
+
+---@param t table
+---@return table
+function shallowCopy(t)
+    local u = { }
+    for k, v in pairs(t) do u[k] = v end
+    return setmetatable(u, getmetatable(t))
+end
+
 -- === Moses === --
 
 M = {}
@@ -167,7 +182,6 @@ function M.filter(t, f)
   end
   return _t
 end
-
 
 --@param x number
 --@return integer
