@@ -17,6 +17,15 @@ GAMEPAD = {
     START = 6
 }
 SPRITES = {
+    PLAYER = {
+        STILL = 1,
+        LEAN_LEFT = 2,
+        LEAN_RIGHT = 3
+    },
+    FLAMES = {
+        ON = 4,
+        OFF = 5
+    },
     BG_STAR = 247,
     BG_BIG_STAR = 248,
     BG_BIGS = {

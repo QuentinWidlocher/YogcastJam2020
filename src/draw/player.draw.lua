@@ -6,4 +6,5 @@ function draw_player()
     end
     player:draw()
     pal()
+    player:drawFlames()
 end

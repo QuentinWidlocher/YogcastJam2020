@@ -23,13 +23,17 @@ Player = GameObject:new({
     hurtCooldown = { value = 20, max = 20 },
 
     dmg = 1,
-    shootingCooldown = { value = 0, max = 8 } -- can shoot when value == max
+    shootingCooldown = { value = 0, max = 8 }, -- can shoot when value == max
+
+    flameCounter = 0,
+    flameSprite = SPRITES.FLAMES.OFF
 })
 
 function Player:update()
     self:getInput()
     self:move()
     self:shoot()
+    self:updateFlames()
 
     self.hurtCooldown.value = min(self.hurtCooldown.value + 1, self.hurtCooldown.max)
 end
@@ -103,6 +107,10 @@ function Player:move()
         if abs(self.vy) <= self.friction / 2 then self.vy = 0 end
     end
 
+    if self.vx < 0 then self.top_left_sprite = SPRITES.PLAYER.LEAN_LEFT
+    elseif self.vx > 0 then self.top_left_sprite = SPRITES.PLAYER.LEAN_RIGHT
+    else self.top_left_sprite = SPRITES.PLAYER.STILL end
+
     --Applying velocity
     self.x += self.vx
     self.y += self.vy
@@ -118,5 +126,30 @@ function Player:hurt(dmg)
         sfx(SFX.PLAYER_DMG)
         self.hp.value = self.hp.value  - dmg
         self.hurtCooldown.value = 0
+    end
+end
+
+function Player:updateFlames()
+    self.flameCounter += 1
+    if self.flameCounter % 4 < 2 then
+        self.flameSprite = SPRITES.FLAMES.OFF
+    else
+        self.flameSprite = SPRITES.FLAMES.ON
+    end
+end
+
+function Player:drawFlames()
+    --Here begin the magic alignment numbers
+    --Good luck!
+
+    if self.top_left_sprite == SPRITES.PLAYER.STILL then
+        spr(self.flameSprite, self.x - 1, self.y + self.h - 1)
+        spr(self.flameSprite, self.x + self.w - 2, self.y + self.h - 1)
+    elseif self.top_left_sprite == SPRITES.PLAYER.LEAN_LEFT then
+        spr(self.flameSprite, self.x, self.y + self.h - 1)
+        spr(self.flameSprite, self.x + self.w - 3, self.y + self.h - 2)
+    else
+        spr(self.flameSprite, self.x, self.y + self.h - 2)
+        spr(self.flameSprite, self.x + self.w - 3, self.y + self.h - 1)
     end
 end
