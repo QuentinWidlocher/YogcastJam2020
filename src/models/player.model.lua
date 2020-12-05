@@ -75,11 +75,13 @@ function Player:shoot()
         })
         newBullet:init()
 
+        -- from the cannon
         self.shootingType.from = {
             x = (self.x + (self.w/2) ) - (Bullet.w/2),
             y = self.y - (Bullet.h),
         }
 
+        -- straight up but lean with the ship
         self.shootingType.dir = {
             x = (self.vx / self.speed)/4,
             y = -1,
