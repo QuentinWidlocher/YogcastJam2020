@@ -1,7 +1,7 @@
 ---@class DefaultShootingType : ShootingType
 ---@field public from Vector
 ---@field public dir Vector
-DefaultShootingType = ShootingType
+DefaultShootingType = shallowCopy(ShootingType)
 
 ---@param bullet Bullet
 function DefaultShootingType:shoot(bullet)

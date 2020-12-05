@@ -14,7 +14,8 @@ BasicEnemy = GameObject:new({
     shootingCooldown = { value = 0, max = 10 },
     hurtCooldown = { value = 0, max = 5 },
     shootingType = DefaultShootingType,
-    phase = 5
+    phase = 5,
+    __type = "BasicEnemy",
 })
 
 function BasicEnemy:update()
@@ -84,8 +85,10 @@ end
 function BasicEnemy:hurt(dmg)
     shake = 0.1
     sfx(SFX.ENEMY_DMG)
+    
     self.hp.value = self.hp.value  - dmg
     self.hurtCooldown.value = 0
+
     if self.hp.value <= 0 then
         self.phase = self.phase - 1
         self.hp.value = self.hp.max

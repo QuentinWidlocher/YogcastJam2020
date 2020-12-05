@@ -4,6 +4,7 @@
 ---@field public playerVersionSprite integer
 ---@field public playerVersion boolean
 ---@field public dir Vector
+---@field public life number
 Bullet = GameObject:new({
     top_left_sprite = 66,
     enemyVersionSprite = 66,
@@ -12,7 +13,7 @@ Bullet = GameObject:new({
 
     speed = 2,
     dir = { x = 0, y = 0 },
-    life = { value = 0, max = 10000},
+    life = 50,
     dmg = 1,
 
     w = fromOct(1),
@@ -28,5 +29,5 @@ end
 function Bullet:update()
     self.x = self.x + (self.dir.x * self.speed)
     self.y = self.y + (self.dir.y * self.speed)
-    self.life.value = self.life.value + 1
+    self.life = self.life - 1
 end

@@ -9,6 +9,8 @@ __lua__
 #include src/models/entity.model.lua
 #include src/models/game-object.model.lua
 #include src/models/shooting-types/shooting-type.model.lua
+#include src/models/shooting-types/trishot.model.lua
+#include src/models/shooting-types/homing.model.lua
 #include src/models/shooting-types/default.model.lua
 #include src/models/shooting-types/trishot.model.lua
 #include src/models/shooting-types/bulletstream.model.lua
