@@ -65,3 +65,13 @@ function BasicEnemy:hurt(dmg)
         shake = 1.5
     end
 end
+
+---@return boolean
+function BasicEnemy:isInsideAllowedZone()
+	return self:collide({
+		x = main_camera.x + (self.w*2),
+		y = main_camera.y + self.h,
+		w = SCREEN_SIZE - (self.w*4),
+		h = SCREEN_SIZE/2 - self.h
+	})
+end

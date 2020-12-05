@@ -16,7 +16,7 @@ function DefaultEnemyMovingType:move(enemy)
     end
 
     -- Reverse direction if going oustide the screen
-    if not enemy:isInsideScreen() then
+    if not enemy:isInsideAllowedZone() then
         enemy.dir = M.map(enemy.dir, invert)
     end
     
