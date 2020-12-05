@@ -18,7 +18,7 @@ function update_bullets()
             end
         end
 
-        if (bullet.life >= bullet.lifetime) then 
+        if (bullet.life.value >= bullet.life.max) then 
             deleteBullet(i)
         end
     end

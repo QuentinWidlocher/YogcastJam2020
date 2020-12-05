@@ -1,7 +1,8 @@
 ---@class GameObject : Entity
 ---@field public top_left_sprite integer
 GameObject = Entity:new({
-    top_left_sprite = 0
+    top_left_sprite = 0,
+    __type = 'GameObject'
 })
 
 function GameObject:draw()    
