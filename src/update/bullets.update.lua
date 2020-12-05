@@ -4,7 +4,7 @@ function update_bullets()
     for i, bullet in pairs(bulletPool) do
         bullet:update()
 
-        if (not bullet.playerVersion and bullet:collide(player)) then
+        if (not bullet.playerVersion and bullet:collide(player:getHitBox())) then
             player:hurt(bullet.dmg)
             add(bulletsToDelete, i)
         end

@@ -164,3 +164,12 @@ function Player:drawFlames()
         spr(self.flameSprite, self.x + self.w - 3, self.y + self.h - 1)
     end
 end
+
+function Player:getHitBox() 
+	return {
+        x = self.x + 2,
+        y = self.y + 2,
+        h = self.h - 5,
+        w = self.w - 5,
+    }
+end
