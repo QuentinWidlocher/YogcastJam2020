@@ -20,7 +20,8 @@ SPRITES = {
     PLAYER = {
         STILL = 1,
         LEAN_LEFT = 2,
-        LEAN_RIGHT = 3
+        LEAN_RIGHT = 3,
+        BULLET = 17,
     },
     FLAMES = {
         ON = 4,
