@@ -5,6 +5,7 @@
 ---@field public movingCooldown Gauge
 ---@field public shootingCooldown Gauge
 ---@field public bulletPool Bullet[]
+---@field public shootingType DefaultShootingType
 BasicEnemy = GameObject:new({
     speed = 1,
     dir = getRandomDirection(),
@@ -12,6 +13,7 @@ BasicEnemy = GameObject:new({
     movingCooldown = { value = 0, max = 10 },
     shootingCooldown = { value = 0, max = 10 },
     hurtCooldown = { value = 0, max = 5 },
+    shootingType = DefaultShootingType
 })
 
 function BasicEnemy:update()
@@ -21,6 +23,9 @@ function BasicEnemy:update()
     self.hurtCooldown.value = min(self.hurtCooldown.value + 1, self.hurtCooldown.max)
 end
 
+function BasicEnemy:init()
+end
+
 function BasicEnemy:shoot()
     self.shootingCooldown.value = self.shootingCooldown.value + 1
 
@@ -28,18 +33,18 @@ function BasicEnemy:shoot()
         local pos = self:getCenteredPos()
         local targetPos = player:getCenteredPos()
 
-        -- add the bullet to the pool so it'll be drawn and updated
-        add(bulletPool, Bullet:new({
-            x = pos.x,
-            y = pos.y,
-            playerVersion = false,
-            lifespan = self.shootingCooldown.max * 10,
-            speed = 1,
-            dir = normalize({
-                x = targetPos.x - pos.x,
-                y = targetPos.y - pos.y,
-            })
-        }))
+        self.shootingType.from = pos
+        self.shootingType.dir = subtractVectors(pos, targetPos)
+
+        local bullet = Bullet:new(
+            {
+                speed = 1,
+                playerVersion = false,
+            }
+        )
+        bullet:init()
+
+        self.shootingType:shoot(bullet)
 
         -- reset the cooldown
         self.shootingCooldown.value = 0

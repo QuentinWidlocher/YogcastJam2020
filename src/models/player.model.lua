@@ -5,6 +5,7 @@
 ---@field public vy number
 ---@field public hp Gauge
 ---@field public hurtCooldown Gauge
+---@field public shootingType ShootingType
 Player = GameObject:new({
     top_left_sprite = 1,
     speed = 2,
@@ -14,8 +15,8 @@ Player = GameObject:new({
     movingx = false,
     movingy = false,
 
-    maxSpeed = 4,
-    friction = 2,
+    maxSpeed = 3,
+    friction = 1,
     vx = 0,
     vy = 0,
 
@@ -24,6 +25,7 @@ Player = GameObject:new({
 
     dmg = 1,
     shootingCooldown = { value = 0, max = 8 }, -- can shoot when value == max
+    shootingType = DefaultShootingType
 
     flameCounter = 0,
     flameSprite = SPRITES.FLAMES.OFF
@@ -68,18 +70,23 @@ function Player:shoot()
 
         -- add the bullet to the pool so it'll be drawn and updated
         local newBullet = Bullet:new({
-            x = (self.x + (self.w/2) ) - (Bullet.w/2),
-            y = self.y - (Bullet.h),
             playerVersion = true,
-            -- lifespan = self.shootingCooldown.max * 10,
             speed = 2,
-            dir = {
-                x = (self.vx / self.speed)/4,
-                y = -1,
-            }
         })
         newBullet:init()
-        add(bulletPool, newBullet)
+
+        self.shootingType.from = {
+            x = (self.x + (self.w/2) ) - (Bullet.w/2),
+            y = self.y - (Bullet.h),
+        }
+
+        self.shootingType.dir = {
+            x = (self.vx / self.speed)/4,
+            y = -1,
+        }
+        
+        self.shootingType:shoot(newBullet)
+
         sfx(SFX.PLAYER_BULLET)
 
         self.shootingCooldown.value = 0
