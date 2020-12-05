@@ -1,3 +1,6 @@
+---@type BasicEnemy[]
+enemies = {}
+
 function init_enemies()
     enemy = BasicEnemy:new({
         top_left_sprite = 64,
@@ -6,4 +9,6 @@ function init_enemies()
         x = SCREEN_SIZE / 2,
         y = SCREEN_SIZE / 4,
     })
+
+    add(enemies, enemy)
 end

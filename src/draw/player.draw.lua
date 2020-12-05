@@ -3,7 +3,6 @@ function draw_player()
         pal(7, 14, 0)
         pal(6, 8, 0)
         pal(13, 2, 0)
-        screen_shake()
     end
     player:draw()
     pal()

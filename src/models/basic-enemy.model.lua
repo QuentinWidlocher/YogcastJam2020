@@ -1,21 +1,24 @@
 ---@class BasicEnemy : GameObject
 ---@field public speed number
 ---@field public dir Vector
----@field public hp integer
+---@field public hp Gauge
 ---@field public movingCooldown Gauge
 ---@field public shootingCooldown Gauge
 ---@field public bulletPool Bullet[]
 BasicEnemy = GameObject:new({
     speed = 1,
     dir = getRandomDirection(),
-    hp = 1,
+    hp = { value = 10, max = 10 },
     movingCooldown = { value = 0, max = 10 },
     shootingCooldown = { value = 0, max = 10 },
+    hurtCooldown = { value = 0, max = 5 },
 })
 
 function BasicEnemy:update()
     self:shoot()
     self:move()
+
+    self.hurtCooldown.value = min(self.hurtCooldown.value + 1, self.hurtCooldown.max)
 end
 
 function BasicEnemy:shoot()
@@ -70,4 +73,11 @@ function BasicEnemy:move()
     -- move
     self.x = nextPos.x
     self.y = nextPos.y
+end
+
+function BasicEnemy:hurt(dmg)
+    shake = 0.05
+    sfx(SFX.ENEMY_DMG)
+    self.hp.value = self.hp.value  - dmg
+    self.hurtCooldown.value = 0
 end

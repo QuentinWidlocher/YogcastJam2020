@@ -22,6 +22,7 @@ Player = GameObject:new({
     hp = { value = 100, max = 100 }, -- can be damaged when value == max
     hurtCooldown = { value = 20, max = 20 },
 
+    dmg = 1,
     shootingCooldown = { value = 0, max = 8 } -- can shoot when value == max
 })
 
@@ -75,6 +76,7 @@ function Player:shoot()
         })
         newBullet:init()
         add(bulletPool, newBullet)
+        sfx(SFX.PLAYER_BULLET)
 
         self.shootingCooldown.value = 0
     end
@@ -113,7 +115,7 @@ end
 function Player:hurt(dmg)
     if (self.hurtCooldown.value == self.hurtCooldown.max) then
         shake = 0.2
-        sfx(0)
+        sfx(SFX.PLAYER_DMG)
         self.hp.value = self.hp.value  - dmg
         self.hurtCooldown.value = 0
     end

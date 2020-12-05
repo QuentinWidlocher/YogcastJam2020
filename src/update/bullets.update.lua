@@ -1,20 +1,25 @@
 function update_bullets()
-    -- foreach(bulletPool, 
-    -- function (bullet) 
-    --     bullet:update()
-    --     if (bullet.life >= bullet.lifeTime) then del(bulletPool, bullet) end
-    -- end)
-
     for i, bullet in pairs(bulletPool) do
         bullet:update()
 
+        local function deleteBullet(i) deli(bulletPool, i) end
+
         if (not bullet.playerVersion and bullet:collide(player)) then
             player:hurt(bullet.dmg)
-            deli(bulletPool, i)
+            deleteBullet(i)
+        end
+
+        if (bullet.playerVersion) then
+            local bulletCollide = function (enemy) return bullet:collide(enemy) end
+            local hittenEnemies = M.filter(enemies, bulletCollide)
+            if (#hittenEnemies > 0) then
+                hittenEnemies[1]:hurt(player.dmg)
+                deleteBullet(i)
+            end
         end
 
         if (bullet.life >= bullet.lifetime) then 
-            deli(bulletPool, i)
+            deleteBullet(i)
         end
     end
 end

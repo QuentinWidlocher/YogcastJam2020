@@ -7,8 +7,7 @@ function draw_debug(draw)
         {label = "mem", value = ceil((stat(0)/2048)*100).."%"},
         {label = "cpu", value = ceil(stat(1)*100).."%"},
         -- {label = "state", value = STATE},
-        {label = "hp", value = player.hp.value.."/"..player.hp.max},
-        {label = "cd", value = player.shootingCooldown.value.."/"..player.shootingCooldown.max},
+        {label = "player hp", value = player.hp.value.."/"..player.hp.max},
     }
     for i = 1, #debug do
         local dbg = debug[i]

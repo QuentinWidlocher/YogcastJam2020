@@ -16,3 +16,9 @@ GAMEPAD = {
     X = 5,
     START = 6
 }
+
+SFX = {
+    PLAYER_DMG = 0,
+    ENEMY_DMG = 1,
+    PLAYER_BULLET = 2,
+}

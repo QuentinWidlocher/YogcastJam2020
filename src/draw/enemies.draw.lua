@@ -1,3 +1,3 @@
 function draw_enemies()
-    enemy:draw()
+    foreach(enemies, function (enemy) enemy:draw() end)
 end
