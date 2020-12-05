@@ -10,6 +10,7 @@ __lua__
 #include src/models/game-object.model.lua
 #include src/models/shooting-types/shooting-type.model.lua
 #include src/models/shooting-types/default.model.lua
+#include src/models/shooting-types/trishot.model.lua
 #include src/models/bullet.model.lua
 #include src/models/player.model.lua
 #include src/models/basic-enemy.model.lua

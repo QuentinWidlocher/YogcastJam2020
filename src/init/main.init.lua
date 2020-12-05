@@ -6,7 +6,7 @@ function _init()
     init_globals()
     init_camera()
     init_player()
-    init_enemies()
+    -- init_enemies()
     init_bg_particles()
     init_bullets()
 end
