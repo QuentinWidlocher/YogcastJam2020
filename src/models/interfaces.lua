@@ -9,3 +9,11 @@ local Vector = {
     x = 0,
     y = 0
 }
+
+---@class Gauge
+---@field public value number
+---@field public max number
+local Gauge = { 
+    value = 0, 
+    max = 100
+}

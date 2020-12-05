@@ -2,15 +2,15 @@
 ---@field public speed number
 ---@field public dir Vector
 ---@field public hp integer
----@field public movingCooldown table
----@field public shootingCooldown table
+---@field public movingCooldown Gauge
+---@field public shootingCooldown Gauge
 ---@field public bulletPool Bullet[]
 BasicEnemy = GameObject:new({
     speed = 1,
     dir = getRandomDirection(),
     hp = 1,
-    movingCooldown = { value = 10, max = 10},
-    shootingCooldown = { value = 10, max = 10},
+    movingCooldown = { value = 0, max = 10 },
+    shootingCooldown = { value = 0, max = 10 },
 })
 
 function BasicEnemy:update()
@@ -19,33 +19,39 @@ function BasicEnemy:update()
 end
 
 function BasicEnemy:shoot()
-    self.shootingCooldown.value = self.shootingCooldown.value - 1
+    self.shootingCooldown.value = self.shootingCooldown.value + 1
 
-    if self.shootingCooldown.value <= 0 then
+    if self.shootingCooldown.value >= self.shootingCooldown.max then
         local pos = self:getCenteredPos()
+
+        -- add the bullet to the pool so it'll be drawn and updated
         add(bulletPool, Bullet:new({
             x = pos.x,
             y = pos.y,
             playerVersion = false,
+            lifespan = self.shootingCooldown.max * 10,
+            speed = 1,
             dir = normalize({
                 x = player.x - self.x,
                 y = player.y - self.y,
             })
         }))
-        self.shootingCooldown.value = self.shootingCooldown.max
+
+        -- reset the cooldown
+        self.shootingCooldown.value = 0
     end
 end
 
 function BasicEnemy:move() 
-    self.movingCooldown.value = self.movingCooldown.value - 1
+    self.movingCooldown.value = self.movingCooldown.value + 1
 
     local function changeDirection()
         self.dir = getRandomDirection()
-        self.movingCooldown.value = self.movingCooldown.max
+        self.movingCooldown.value = 0
     end
 
     -- change direction after cooldown
-    if self.movingCooldown.value <= 0 then
+    if self.movingCooldown.value >= self.shootingCooldown.max then
         changeDirection()
     end
 

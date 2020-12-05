@@ -14,6 +14,7 @@ Bullet = GameObject:new({
     dir = { x = 0, y = 0 },
     lifetime = 60,
     life = 0,
+    dmg = 1,
 
     w = fromOct(1),
     h = fromOct(1)

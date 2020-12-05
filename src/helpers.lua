@@ -143,6 +143,22 @@ function M.map(t, f)
   return _t
 end
 
+--- filters and returns values passing an iterator test.
+-- <br/><em>Aliased as `filter`</em>.
+-- @name filter
+-- @param t a table
+-- @param f an iterator function, prototyped as `f (v, k)`
+-- @return the filtered values
+-- @see reject
+function M.filter(t, f)
+  local _t = {}
+  for index,value in pairs(t) do
+    if f(value,index) then _t[#_t+1] = value end
+  end
+  return _t
+end
+
+
 --@param x number
 --@return integer
 function ceil(x)
