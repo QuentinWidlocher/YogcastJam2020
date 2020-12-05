@@ -7,13 +7,14 @@
 Bullet = GameObject:new({
     top_left_sprite = 66,
     enemyVersionSprite = 66,
-    playerVersionSprite = 66,
+    playerVersionSprite = 2,
     playerVersion = true,
 
     speed = 2,
     dir = { x = 0, y = 0 },
     lifetime = 60,
     life = 0,
+    dmg = 1,
 
     w = fromOct(1),
     h = fromOct(1)

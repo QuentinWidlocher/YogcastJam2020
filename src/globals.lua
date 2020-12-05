@@ -29,3 +29,9 @@ SPRITES = {
         255
     }
 }
+
+SFX = {
+    PLAYER_DMG = 0,
+    ENEMY_DMG = 1,
+    PLAYER_BULLET = 2,
+}

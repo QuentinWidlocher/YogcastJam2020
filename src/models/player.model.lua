@@ -1,18 +1,37 @@
 ---@class Player : GameObject
+---@field public maxSpeed number
+---@field public friction number
+---@field public vx number
+---@field public vy number
+---@field public hp Gauge
+---@field public hurtCooldown Gauge
 Player = GameObject:new({
     top_left_sprite = 1,
     speed = 2,
     w = fromOct(1),
     h = fromOct(1),
-    max_speed = 4,
+
+    movingx = false,
+    movingy = false,
+
+    maxSpeed = 4,
     friction = 2,
     vx = 0,
-    vy = 0
+    vy = 0,
+
+    hp = { value = 100, max = 100 }, -- can be damaged when value == max
+    hurtCooldown = { value = 20, max = 20 },
+
+    dmg = 1,
+    shootingCooldown = { value = 0, max = 8 } -- can shoot when value == max
 })
 
 function Player:update()
     self:getInput()
     self:move()
+    self:shoot()
+
+    self.hurtCooldown.value = min(self.hurtCooldown.value + 1, self.hurtCooldown.max)
 end
 
 function Player:getInput()
@@ -38,14 +57,39 @@ function Player:getInput()
     end
 end
 
+function Player:shoot()
+    self.shootingCooldown.value = min(self.shootingCooldown.value + 1, self.shootingCooldown.max)
+
+    if (btn(GAMEPAD.X)) and self.shootingCooldown.value == self.shootingCooldown.max then
+
+        -- add the bullet to the pool so it'll be drawn and updated
+        local newBullet = Bullet:new({
+            x = (self.x + (self.w/2) ) - (Bullet.w/2),
+            y = self.y - (Bullet.h),
+            playerVersion = true,
+            -- lifespan = self.shootingCooldown.max * 10,
+            speed = 2,
+            dir = {
+                x = (self.vx / self.speed)/4,
+                y = -1,
+            }
+        })
+        newBullet:init()
+        add(bulletPool, newBullet)
+        sfx(SFX.PLAYER_BULLET)
+
+        self.shootingCooldown.value = 0
+    end
+end
+
 function Player:move()
     --Acceleration
     self.vx += self.ax * self.speed
     self.vy += self.ay * self.speed
 
     --Velocity
-    self.vx = clamp(self.vx, -self.max_speed, self.max_speed)
-    self.vy = clamp(self.vy, -self.max_speed, self.max_speed)
+    self.vx = clamp(self.vx, -self.maxSpeed, self.maxSpeed)
+    self.vy = clamp(self.vy, -self.maxSpeed, self.maxSpeed)
 
     --Slow down if not pressing anything
     if not self.movingx and self.vx != 0 then
@@ -66,4 +110,13 @@ function Player:move()
     --Ensuring the player doesn't go off screen
     self.x = clamp(player.x, 0, SCREEN_SIZE - self.w)
     self.y = clamp(player.y, 0, SCREEN_SIZE - self.h)
+end
+
+function Player:hurt(dmg)
+    if (self.hurtCooldown.value == self.hurtCooldown.max) then
+        shake = 0.2
+        sfx(SFX.PLAYER_DMG)
+        self.hp.value = self.hp.value  - dmg
+        self.hurtCooldown.value = 0
+    end
 end
