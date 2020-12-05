@@ -11,4 +11,6 @@ function init_enemies()
     })
 
     add(enemies, enemy)
+
+    foreach(enemies, function (enemy) enemy:init() end)
 end

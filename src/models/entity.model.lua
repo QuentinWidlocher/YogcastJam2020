@@ -9,7 +9,8 @@ Entity = {
 	x = 0,
 	y = 0,
 	w = 0,
-	h = 0
+	h = 0,
+	__type = 'Entity',
 }
 
 ---@param o Entity
@@ -18,7 +19,6 @@ function Entity:new(o)
 	o = o or {}
 	setmetatable(o, self)
 	self.__index = self
-	self.__type = 'Entity'
 	return o
 end
 
@@ -31,10 +31,11 @@ end
 
 ---@return string
 function Entity:toString()
-	local string = "Printing ".. self.__type .."\n"
+	local string = self.__type .." {\n"
 	for key, value in pairs(self) do
-		string = string..key.." = "..value.."\n"
+		string = string.."\t"..tostr(key).." = "..tostr(value).."\n"
 	end
+	string = string.."}"
 	return string
 end
 

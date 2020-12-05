@@ -12,12 +12,13 @@ Bullet = GameObject:new({
 
     speed = 2,
     dir = { x = 0, y = 0 },
-    lifetime = 60,
-    life = 0,
+    life = { value = 0, max = 10000},
     dmg = 1,
 
     w = fromOct(1),
-    h = fromOct(1)
+    h = fromOct(1),
+
+    __type = 'Bullet'
 })
 
 function Bullet:init() 
@@ -27,5 +28,5 @@ end
 function Bullet:update()
     self.x = self.x + (self.dir.x * self.speed)
     self.y = self.y + (self.dir.y * self.speed)
-    self.life = self.life + 1
+    self.life.value = self.life.value + 1
 end
