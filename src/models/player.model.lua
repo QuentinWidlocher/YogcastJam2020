@@ -27,7 +27,7 @@ Player = GameObject:new({
     shootingCooldown = { value = 0, max = 4 }, -- can shoot when value == max
     shootingType = DefaultShootingType,
 
-    movingType = DefaultPlayerMovingType,
+    movingType = GridPlayerMovingType,
 
     flameCounter = 0,
     flameSprite = SPRITES.FLAMES.OFF,
