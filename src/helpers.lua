@@ -96,9 +96,30 @@ function isInsideScreen(x)
     return x > 0 and x < SCREEN_SIZE
 end
 
+---@param forceToEight boolean
 ---@return Vector
-function getRandomDirection()
-    return { x = 1 - rnd(2), y = 1 - rnd(2) }
+function getRandomDirection(forceToEight)
+    if forceToEight then
+        return { x = 1 - flr(rnd(2)), y = 1 - flr(rnd(2)) }
+    else
+        return { x = 1 - rnd(2), y = 1 - rnd(2) }
+    end
+end
+
+---@param v Vector
+---@return number
+function getVectorLength(v)
+    return sqrt(v.x * v.x + v.y * v.y)
+end
+
+---@param v Vector
+---@return Vector
+function normalize(v)
+    local length = getVectorLength(v)
+    return {
+        x = v.x / length,
+        y = v.y / length,
+    }
 end
 
 -- === Moses === --

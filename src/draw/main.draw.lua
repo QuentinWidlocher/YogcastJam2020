@@ -9,5 +9,6 @@ function draw_game()
     draw_bgParticles()
     draw_enemies()
     draw_player()
+    draw_bullets()
     draw_debug(true)
 end

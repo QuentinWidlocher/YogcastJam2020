@@ -7,6 +7,7 @@ BgParticle = GameObject:new({
 })
 
 function BgParticle:init()
+    if rnd(10) <= 1 then self.top_left_sprite = SPRITES.BG_BIG_STAR end
     if rnd(50) <= 1 then self.top_left_sprite = SPRITES.BG_BIGS[flr(rnd(#SPRITES.BG_BIGS + 1))] end
 end
 

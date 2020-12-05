@@ -8,4 +8,5 @@ function _init()
     init_player()
     init_enemies()
     init_bg_particles()
+    init_bullets()
 end

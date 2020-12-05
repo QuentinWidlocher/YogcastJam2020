@@ -18,8 +18,8 @@ GAMEPAD = {
 }
 SPRITES = {
     BG_STAR = 247,
+    BG_BIG_STAR = 248,
     BG_BIGS = {
-        248,
         249,
         250,
         251,
