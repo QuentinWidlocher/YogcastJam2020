@@ -14,6 +14,7 @@ BasicEnemy = GameObject:new({
     shootingCooldown = { value = 0, max = 10 },
     hurtCooldown = { value = 0, max = 5 },
     shootingType = DefaultShootingType,
+    movingType = DefaultEnemyMovingType,
     phase = 5,
     __type = "BasicEnemy",
 })
@@ -54,32 +55,7 @@ function BasicEnemy:shoot()
 end
 
 function BasicEnemy:move() 
-    self.movingCooldown.value = self.movingCooldown.value + 1
-
-    local function changeDirection()
-        self.dir = getRandomDirection()
-        self.movingCooldown.value = 0
-    end
-
-    -- change direction after cooldown
-    if self.movingCooldown.value >= self.shootingCooldown.max then
-        changeDirection()
-    end
-
-    -- Reverse direction if going oustide the screen
-    if not self:isInsideScreen() then
-        self.dir = M.map(self.dir, invert)
-    end
-    
-    ---@type Vector
-    local nextPos = { 
-        x = self.x + (self.dir.x * self.speed),
-        y = self.y + (self.dir.y * self.speed) 
-    }
-
-    -- move
-    self.x = nextPos.x
-    self.y = nextPos.y
+    self.movingType:move(self)
 end
 
 function BasicEnemy:hurt(dmg)

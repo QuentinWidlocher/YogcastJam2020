@@ -13,4 +13,7 @@ function draw_debug(draw)
         local dbg = debug[i]
         write(dbg.label..":"..dbg.value, main_camera.x+1, main_camera.y + (SCREEN_SIZE - 8*i), 0,7)
     end 
+
+    local x = player:getHitBox()
+    rect(x.x, x.y, x.x + x.w, x.y + x.h, 11)
 end

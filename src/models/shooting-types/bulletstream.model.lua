@@ -1,4 +1,4 @@
-BulletstreamShootingType = ShootingType
+BulletstreamShootingType = shallowCopy(ShootingType)
 
 function BulletstreamShootingType:shoot(bullet)
     bullet.x = self.from.x
