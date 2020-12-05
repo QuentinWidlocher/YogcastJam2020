@@ -2,14 +2,41 @@
 ---@field public speed number
 ---@field public dir Vector
 ---@field public hp integer
+---@field public movingCooldown table
+---@field public shootingCooldown table
+---@field public bulletPool Bullet[]
 BasicEnemy = GameObject:new({
-    speed = 3,
+    speed = 1,
     dir = getRandomDirection(),
     hp = 1,
-    movingCooldown = { value = 10, max = 10}
+    movingCooldown = { value = 10, max = 10},
+    shootingCooldown = { value = 10, max = 10},
 })
 
 function BasicEnemy:update()
+    self:shoot()
+    self:move()
+end
+
+function BasicEnemy:shoot()
+    self.shootingCooldown.value = self.shootingCooldown.value - 1
+
+    if self.shootingCooldown.value <= 0 then
+        local pos = self:getCenteredPos()
+        add(bulletPool, Bullet:new({
+            x = pos.x,
+            y = pos.y,
+            playerVersion = false,
+            dir = normalize({
+                x = player.x - self.x,
+                y = player.y - self.y,
+            })
+        }))
+        self.shootingCooldown.value = self.shootingCooldown.max
+    end
+end
+
+function BasicEnemy:move() 
     self.movingCooldown.value = self.movingCooldown.value - 1
 
     local function changeDirection()

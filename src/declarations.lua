@@ -509,6 +509,11 @@ function sgn(x) end
 ---@return number
 function sin(x) end
 
+--- square root
+---@param x number
+---@return number
+function sqrt(x) end
+
 --- set random seed
 ---@param x number
 function srand(x) end
