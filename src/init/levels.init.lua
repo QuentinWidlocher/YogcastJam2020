@@ -30,10 +30,10 @@ levels = {
                 "is that so? enjoy the few remaining seconds of your life, criminal scum!",
             },
             phases = {
-                {shootingType = DefaultShootingType:new(), bulletCooldown = 20, bulletSpeed = 1.5, hpMax = 70, damage = 10},
-                {shootingType = DefaultShootingType:new(), bulletCooldown = 10, bulletSpeed = 2, hpMax = 60, damage = 10},
+                {shootingType = DefaultShootingType:new(), bulletCooldown = 20, bulletSpeed = 1.5, hpMax = 50, damage = 20},
+                {shootingType = DefaultShootingType:new(), bulletCooldown = 10, bulletSpeed = 2, hpMax = 50, damage = 20},
                 {shootingType = HomingShootingType:new(), bulletCooldown = 15, bulletSpeed = 1, hpMax = 50, damage = 10},
-                {shootingType = TrishotShootingType:new(), bulletCooldown = 6, bulletSpeed = 4, hpMax = 50, damage = 10},
+                {shootingType = TrishotShootingType:new(), bulletCooldown = 10, bulletSpeed = 4, hpMax = 50, damage = 10},
             }
         })
     },
@@ -72,10 +72,10 @@ levels = {
                 "never mind. let the fight commence!"
             },
             phases = {
-                {shootingType = DefaultShootingType:new(), bulletCooldown = 20, bulletSpeed = 1.5, hpMax = 70, damage = 10},
-                {shootingType = DefaultShootingType:new(), bulletCooldown = 10, bulletSpeed = 2, hpMax = 60, damage = 10},
-                {shootingType = HomingShootingType:new(), bulletCooldown = 15, bulletSpeed = 1, hpMax = 50, damage = 10},
-                {shootingType = TrishotShootingType:new(), bulletCooldown = 15, bulletSpeed = 4, hpMax = 50, damage = 10},
+                {shootingType = DefaultShootingType:new(), bulletCooldown = 20, bulletSpeed = 1.5, hpMax = 50, damage = 10},
+                {shootingType = BrokenTentacleShootingType:new(), bulletCooldown = 2, bulletSpeed = 3, hpMax = 40, damage = 5},
+                {shootingType = SlowfillShootingType:new(), bulletCooldown = 20, bulletSpeed = 0.02, hpMax = 70, damage = 10},
+                {shootingType = TrishotShootingType:new(), bulletCooldown = 15, bulletSpeed = 4, hpMax = 50, damage = 20},
             }
         })
     },
@@ -107,10 +107,10 @@ levels = {
                 "fear not, it won't matter once you're dead. goodbye."
             },
             phases = {
-                {shootingType = SuperhotShootingType:new({ baseShootingType = DefaultShootingType:new()}), bulletCooldown = 20, bulletSpeed = 1.5, hpMax = 70, damage = 10},
-                {shootingType = SuperhotShootingType:new({ baseShootingType = DefaultShootingType:new()}), bulletCooldown = 10, bulletSpeed = 2, hpMax = 60, damage = 10},
-                {shootingType = SuperhotShootingType:new({ baseShootingType = HomingShootingType:new()}), bulletCooldown = 15, bulletSpeed = 1, hpMax = 50, damage = 10},
-                {shootingType = SuperhotShootingType:new({ baseShootingType = TrishotShootingType:new()}), bulletCooldown = 15, bulletSpeed = 4, hpMax = 50, damage = 10},
+                {shootingType = SuperhotShootingType:new({ baseShootingType = TrishotShootingType:new()}), bulletCooldown = 8, bulletSpeed = 4, hpMax = 40, damage = 10},
+                {shootingType = SuperhotShootingType:new({ baseShootingType = BulletstreamShootingType:new()}), bulletCooldown = 15, bulletSpeed = 1, hpMax = 40, damage = 5},
+                {shootingType = SuperhotShootingType:new({ baseShootingType = BrokenTentacleShootingType:new()}), bulletCooldown = 1, bulletSpeed = 7, hpMax = 40, damage = 10},
+                {shootingType = SuperhotShootingType:new({ baseShootingType = DefaultShootingType:new()}), bulletCooldown = 3, bulletSpeed = 3, hpMax = 30, damage = 5},
             }
         })
     }
