@@ -80,7 +80,7 @@ function Player:shoot()
         -- add the bullet to the pool so it'll be drawn and updated
         local newBullet = Bullet:new({
             playerVersion = true,
-            speed = 3,
+            speed = 10,
         })
         newBullet:init()
 
