@@ -4,6 +4,7 @@ update_fun = {
     [GAME_STATES.DIALOGUE] = function() update_dialogue() end,
     [GAME_STATES.GAME] = function() update_game() end,
     [GAME_STATES.GAME_OVER] = function() update_gameover() end,
+    [GAME_STATES.ENDING] = function() update_ending() end,
 }
 
 function _update()
@@ -15,8 +16,9 @@ function update_main_screen()
 
     sspr()
 
-    if (btnp(GAMEPAD.X) or btnp(GAMEPAD.O)) then 
+    if (btnp(GAMEPAD.X)) then 
         nextLevel()
+        startTime = time()
         change_state(GAME_STATES.DIALOGUE)
     end
 end
@@ -37,7 +39,11 @@ function update_game()
 end
 
 function update_gameover()
-    if (btnp(GAMEPAD.X) or btnp(GAMEPAD.O)) then 
+    if (btnp(GAMEPAD.O)) then 
         change_state(GAME_STATES.MAIN_MENU)
     end
+end
+
+function update_ending()
+    dtb_update()
 end
