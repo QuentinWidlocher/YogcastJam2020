@@ -2,6 +2,7 @@
 
 draw_fun = {
     [GAME_STATES.MAIN_MENU] = function() draw_main_screen() end,
+    [GAME_STATES.DIALOGUE] = function() draw_dialogue() end,
     [GAME_STATES.GAME] = function() draw_game() end,
 }
 
@@ -41,6 +42,13 @@ function draw_main_screen()
     end
 end
 
+function draw_dialogue()
+    draw_bgParticles()
+    draw_enemies()
+    draw_player()
+    dtb_draw()
+end
+
 function draw_game()
     screen_shake()
     draw_bgParticles()
@@ -67,6 +75,5 @@ function draw_game()
 
     draw_bossbar()
     draw_player_bar()
-    dtb_draw()
     draw_debug(false)
 end

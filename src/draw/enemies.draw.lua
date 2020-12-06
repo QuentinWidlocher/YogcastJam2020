@@ -1,5 +1,5 @@
 function draw_enemies()
-    if enemy.hurtCooldown.value < enemy.hurtCooldown.max then
+    if STATE == GAME_STATES.GAME and enemy.hurtCooldown.value < enemy.hurtCooldown.max then
         local origSprite = enemy.top_left_sprite
         enemy.top_left_sprite = enemy.hurtSprite
         enemy:draw() 

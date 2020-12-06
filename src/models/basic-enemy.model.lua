@@ -40,9 +40,6 @@ function BasicEnemy:update()
 end
 
 function BasicEnemy:init()
-    for _,text in ipairs(self.dialogue) do
-        dtb_disp(text)
-    end
     self.phase = #self.phases
     self:initPhase(#self.phases - self.phase + 1)
 end
