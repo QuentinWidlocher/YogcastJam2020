@@ -12,5 +12,14 @@ ShootingType = {
     sprite = 79
 }
 
+---@param o ShootingType
+---@return ShootingType
+function ShootingType:new(o)
+	o = o or {}
+	setmetatable(o, self)
+	self.__index = self
+	return o
+end
+
 ---@param bullet Bullet
 function ShootingType:shoot(bullet) end

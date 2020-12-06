@@ -12,8 +12,8 @@ BasicEnemy = GameObject:new({
     hp = { value = 100, max = 100 },
     movingCooldown = { value = 0, max = 10 },
     hurtCooldown = { value = 0, max = 5 },
-    shootingType = shallowCopy(DefaultShootingType),
-    movingType = shallowCopy(DefaultEnemyMovingType),
+    shootingType = DefaultShootingType:new(),
+    movingType = DefaultEnemyMovingType:new(),
     phase = 5,
     __type = "BasicEnemy",
 })

@@ -1,8 +1,9 @@
 ---@class TrishotShootingType : ShootingType
-TrishotShootingType = shallowCopy(ShootingType)
-TrishotShootingType.cooldown = { value = 0, max = 20 }
-TrishotShootingType.speed = 1
-TrishotShootingType.sprite = 69
+TrishotShootingType = ShootingType:new({
+    cooldown = { value = 0, max = 20 },
+    speed = 1,
+    sprite = 69,
+})
 
 ---@param bullet Bullet
 function TrishotShootingType:shoot(bullet)

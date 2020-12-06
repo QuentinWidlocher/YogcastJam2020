@@ -1,8 +1,12 @@
 ---@class HomingShootingType : ShootingType
-HomingShootingType = shallowCopy(ShootingType)
-HomingShootingType.cooldown = { value = 0, max = 20 }
-HomingShootingType.speed = 1
-HomingShootingType.sprite = 66
+HomingShootingType = ShootingType:new({
+    cooldown = { value = 0, max = 20 },
+    speed = 1,
+    sprite = 66,
+})
+
+
+
 
 ---@param bullet Bullet
 function HomingShootingType:shoot(bullet)

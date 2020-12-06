@@ -5,6 +5,7 @@
 ---@field public playerVersion boolean
 ---@field public dir Vector
 ---@field public life number
+---@field public movingType MovingType
 Bullet = GameObject:new({
     top_left_sprite = 66,
     enemyVersionSprite = 66,
@@ -19,6 +20,8 @@ Bullet = GameObject:new({
     w = fromOct(1),
     h = fromOct(1),
 
+    movingType = DefaultBulletMovingType:new(),
+
     __type = 'Bullet'
 })
 
@@ -27,7 +30,6 @@ function Bullet:init()
 end
 
 function Bullet:update()
-    self.x = self.x + (self.dir.x * self.speed)
-    self.y = self.y + (self.dir.y * self.speed)
+    self.movingType:move(self)
     self.life = self.life - 1
 end

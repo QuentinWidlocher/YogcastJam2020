@@ -17,6 +17,7 @@ __lua__
 #include src/models/shooting-types/bulletstream.model.lua
 
 #include src/models/moving-types/moving-type.model.lua
+#include src/models/moving-types/default-bullet.model.lua
 #include src/models/moving-types/default-player.model.lua
 #include src/models/moving-types/default-enemy.model.lua
 #include src/models/moving-types/grid-player.model.lua

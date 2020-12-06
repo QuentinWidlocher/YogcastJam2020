@@ -1,7 +1,8 @@
 ---@class DefaultShootingType : ShootingType
-DefaultShootingType = shallowCopy(ShootingType)
-DefaultShootingType.cooldown = { value = 0, max = 20 }
-DefaultShootingType.speed = 2
+DefaultShootingType = ShootingType:new({
+    cooldown = { value = 0, max = 20 },
+    speed = 2,
+})
 
 ---@param bullet Bullet
 function DefaultShootingType:shoot(bullet)

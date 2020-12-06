@@ -9,7 +9,8 @@ function init_enemies()
         h = fromOct(2),
         x = SCREEN_SIZE / 2,
         y = SCREEN_SIZE / 4,
-        shootingType = shallowCopy(TrishotShootingType)
+        shootingType = DefaultShootingType:new(),
+        movingType = DefaultEnemyMovingType:new(),
     })
 
     add(enemies, enemy)

@@ -25,9 +25,8 @@ Player = GameObject:new({
 
     dmg = 1,
     shootingCooldown = { value = 0, max = 4 }, -- can shoot when value == max
-    shootingType = DefaultShootingType,
-
-    movingType = GridPlayerMovingType,
+    shootingType = DefaultShootingType:new(),
+    movingType = DefaultPlayerMovingType:new(),
 
     flameCounter = 0,
     flameSprite = SPRITES.FLAMES.OFF,
@@ -144,4 +143,8 @@ function Player:getHitBox()
         h = self.h - 5,
         w = self.w - 5,
     }
+end
+
+function Player:isMoving()
+    return self.movingx or self.movingy
 end

@@ -1,4 +1,4 @@
-GridPlayerMovingType = shallowCopy(MovingType)
+GridPlayerMovingType = MovingType:new()
 
 playerGridx = 8
 playerGridy = 8

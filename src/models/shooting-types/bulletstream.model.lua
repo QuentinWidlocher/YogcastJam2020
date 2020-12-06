@@ -1,8 +1,9 @@
 ---@class BulletstreamShootingType : ShootingType
-BulletstreamShootingType = shallowCopy(ShootingType)
-BulletstreamShootingType.cooldown = { value = 0, max = 40 }
-BulletstreamShootingType.speed = 2.5
-BulletstreamShootingType.sprite = 68
+BulletstreamShootingType = ShootingType:new({
+    cooldown = { value = 0, max = 40 },
+    speed = 2.5,
+    sprite = 68
+})
 
 ---@param bullet Bullet
 function BulletstreamShootingType:shoot(bullet)
