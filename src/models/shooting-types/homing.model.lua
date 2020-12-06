@@ -46,7 +46,7 @@ function HomingShootingType:shoot(bullet)
 
                 -- If we located only one target we choose it
                 if (#hittenEnemies == 1) then
-                    chosenEnemy = hittenEnemies[1]
+                    chosenEnemy = hittenenemy
                 else
                     -- else we choose the nearest enemy
                     local sortedEnemies = sort(hittenEnemies, function (e1, e2)

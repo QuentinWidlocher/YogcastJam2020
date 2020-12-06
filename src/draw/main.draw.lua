@@ -14,10 +14,10 @@ function draw_game()
 
     if (bulletTimeout > 0) then
         --draw text
-        local text = "pHASE "..(#enemies[1].phases - enemies[1].phase + 1).."/"..#enemies[1].phases
+        local text = "pHASE "..(#enemy.phases - enemy.phase + 1).."/"..#enemy.phases
         local speed = 40
         local height = 5
-        
+
         -- god help me i'm so tired
         for i=0,#text,1 do
             print(

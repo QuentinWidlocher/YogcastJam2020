@@ -42,7 +42,7 @@ end
 
 function BasicEnemy:initPhase(phase)
     self.shootingType = self.phases[phase].shootingType
-    self.shootingType.cooldown.max = self.phases[phase].bulletCooldown
+    self.shootingType.cooldown = { value = 0, max = self.phases[phase].bulletCooldown }
     self.shootingType.speed = self.phases[phase].bulletSpeed
     self.hp.max = self.phases[phase].hpMax
     self.hp.value = self.hp.max

@@ -9,13 +9,9 @@ function update_bullets()
             add(bulletsToDelete, i)
         end
 
-        if (bullet.playerVersion) then
-            local bulletCollide = function (enemy) return bullet:collide(enemy) end
-            local hittenEnemies = M.filter(enemies, bulletCollide)
-            if (#hittenEnemies > 0) then
-                hittenEnemies[1]:hurt(player.dmg)
-                add(bulletsToDelete, i)
-            end
+        if (bullet.playerVersion and bullet:collide(enemy)) then
+            enemy:hurt(bullet.dmg)
+            add(bulletsToDelete, i)
         end
 
         if not bullet:isInsideScreen() then 
@@ -37,5 +33,5 @@ function bulletClearIfTimeout()
             bulletPool[k] = nil
         end
     end
-    bulletTimeout -= 1
+    bulletTimeout = bulletTimeout - 1
 end

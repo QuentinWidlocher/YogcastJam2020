@@ -9,7 +9,7 @@ function draw_debug(draw)
         -- {label = "state", value = STATE},
         -- {label = "player hp", value = player.hp.value.."/"..player.hp.max},
         {label = "bullets", value = #bulletPool},
-        {label = "cd", value = enemies[1].shootingType.cooldown.value.."/"..enemies[1].shootingType.cooldown.max},
+        {label = "cd", value = enemy.shootingType.cooldown.value.."/"..enemy.shootingType.cooldown.max},
         -- {label = "time", value = SuperhotModifier.timeMod},
     }
     for i = 1, #debug do
