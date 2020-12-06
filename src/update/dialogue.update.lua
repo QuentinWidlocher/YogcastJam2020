@@ -36,7 +36,7 @@ function update_dialogue()
         curLine.counter += 1
     end
 
-    if dWaiting and btnp(GAMEPAD.X) then
+    if dWaiting and (btnp(GAMEPAD.X) or btnp(GAMEPAD.O)) then
         dWaiting = false
         --Empty drawLines and update curLine to match the point the text is at
         for k,v in pairs(drawLines) do
