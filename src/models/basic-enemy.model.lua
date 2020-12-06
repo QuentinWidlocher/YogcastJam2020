@@ -9,15 +9,23 @@
 BasicEnemy = GameObject:new({
     origSpeed = 1,
     speed = 1,
+
     dir = getRandomDirection(),
+
+    hurtSprite = 79,
+
     hp = { value = 100, max = 100 },
+
     movingCooldown = { value = 0, max = 10 },
     hurtCooldown = { value = 0, max = 5 },
+
     shootingType = DefaultShootingType:new(),
     movingType = DefaultEnemyMovingType:new(),
+
     phase = 1,
+    phases = {},
+
     __type = "BasicEnemy",
-    phases = {}
 })
 
 function BasicEnemy:update()
@@ -37,6 +45,7 @@ function BasicEnemy:initPhase(phase)
     self.shootingType.cooldown.max = self.phases[phase].bulletCooldown
     self.shootingType.speed = self.phases[phase].bulletSpeed
     self.hp.max = self.phases[phase].hpMax
+    self.hp.value = self.hp.max
 end
 
 function BasicEnemy:shoot()

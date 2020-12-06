@@ -11,6 +11,25 @@ function draw_game()
     draw_enemies()
     draw_player()
     draw_bullets()
+
+    if (bulletTimeout > 0) then
+        --draw text
+        local text = "pHASE "..(#enemies[1].phases - enemies[1].phase + 1).."/"..#enemies[1].phases
+        local speed = 40
+        local height = 5
+        
+        -- god help me i'm so tired
+        for i=0,#text,1 do
+            print(
+                sub(text,i,i),
+                (SCREEN_SIZE/2)+(i*4)-(#text*2),
+                64+sin(((time()*60)+i)/speed)*height,
+                7
+            )
+        end
+    end
+
     draw_bossbar()
-    draw_debug(true)
+    draw_player_bar()
+    draw_debug(false)
 end

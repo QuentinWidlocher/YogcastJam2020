@@ -29,7 +29,7 @@ function update_bullets()
     bulletClearIfTimeout()
 end
 
-bulletTimeout = 0
+bulletTimeout = 60
 
 function bulletClearIfTimeout()
     if bulletTimeout > 0 then
