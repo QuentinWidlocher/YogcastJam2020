@@ -31,5 +31,5 @@ function draw_game()
 
     draw_bossbar()
     draw_player_bar()
-    draw_debug(false)
+    draw_debug(true)
 end

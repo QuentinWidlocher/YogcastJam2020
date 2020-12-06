@@ -87,9 +87,15 @@ function BasicEnemy:hurt(dmg)
     self.hurtCooldown.value = 0
 
     if self.hp.value <= 0 then
-        self.phase = self.phase - 1
-        self:initPhase(#self.phases - self.phase + 1)
-        self.hp.value = self.hp.max
+        
+        if (self.phase - 1 > 0) then
+            self.phase = self.phase - 1
+            self:initPhase(#self.phases - self.phase + 1)
+            self.hp.value = self.hp.max
+        else
+            nextLevel()
+        end
+
         shake = 1.5
         bulletTimeout = 60
     end
