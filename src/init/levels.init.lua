@@ -103,7 +103,6 @@ levels = {
         end,
         music = MUSIC.OUT_OF_CONTROL,
         dialogue = {
-<<<<<<< HEAD
             "?: hello there.",
             "YOU: what the heck",
             "?: i'm time itself. i've had to step in because it seems like you've erased my best friend, floaty space cube.",
