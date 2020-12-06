@@ -45,3 +45,8 @@ SFX = {
     ENEMY_DMG = 1,
     PLAYER_BULLET = 2,
 }
+
+STATES = {
+    NORMAL = 0,
+    DIALOGUE = 1,
+}
