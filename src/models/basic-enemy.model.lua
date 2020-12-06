@@ -7,6 +7,7 @@
 ---@field public bulletPool Bullet[]
 ---@field public shootingType DefaultShootingType
 BasicEnemy = GameObject:new({
+    origSpeed = 1,
     speed = 1,
     dir = getRandomDirection(),
     hp = { value = 100, max = 100 },
@@ -29,7 +30,7 @@ function BasicEnemy:init()
 end
 
 function BasicEnemy:shoot()
-    self.shootingType.cooldown.value = self.shootingType.cooldown.value + 1
+    self.shootingType.cooldown.value = self.shootingType.cooldown.value + self.shootingType.cooldownRate
 
     if self.shootingType.cooldown.value >= self.shootingType.cooldown.max then
 

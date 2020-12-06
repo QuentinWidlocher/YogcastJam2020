@@ -5,7 +5,8 @@ SuperhotEnemyMovingType = MovingType:new({
 
 ---@param enemy BasicEnemy
 function SuperhotEnemyMovingType:move(enemy)
-    if player:isMoving() then
-        DefaultEnemyMovingType:move(enemy)
-    end
+    enemy.speed = enemy.origSpeed * SuperhotModifier.timeMod
+    enemy.shootingType.cooldownRate = enemy.shootingType.origCooldownRate * SuperhotModifier.timeMod
+    
+    DefaultEnemyMovingType:move(enemy)
 end

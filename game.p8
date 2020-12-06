@@ -32,6 +32,8 @@ __lua__
 #include src/models/camera.model.lua
 #include src/models/bg-particle.model.lua
 
+#include src/models/superhot-modifier.model.lua
+
 #include src/init/camera.init.lua
 #include src/init/player.init.lua
 #include src/init/bullets.init.lua

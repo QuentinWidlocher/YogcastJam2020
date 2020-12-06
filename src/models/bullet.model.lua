@@ -13,6 +13,7 @@ Bullet = GameObject:new({
     playerVersion = true,
 
     speed = 2,
+    origSpeed = 2,
     dir = { x = 0, y = 0 },
     dmg = 1,
 

@@ -10,7 +10,8 @@ function init_enemies()
         x = SCREEN_SIZE / 2,
         y = SCREEN_SIZE / 4,
         shootingType = SuperhotShootingType:new({
-            baseShootingType = HomingShootingType:new()
+            baseShootingType = BulletstreamShootingType:new(),
+            cooldown = { value = 0, max = 30}
         }),
         movingType = SuperhotEnemyMovingType:new(),
     })

@@ -5,7 +5,6 @@ SuperhotBulletMovingType = MovingType:new({
 })
 
 function SuperhotBulletMovingType:move(bullet)
-    if player:isMoving() then
-        self.baseMovingType:move(bullet)
-    end
+    bullet.speed = bullet.origSpeed * SuperhotModifier.timeMod
+    self.baseMovingType:move(bullet)
 end

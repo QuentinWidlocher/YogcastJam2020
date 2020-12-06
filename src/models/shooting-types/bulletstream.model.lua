@@ -17,6 +17,7 @@ function BulletstreamShootingType:shoot(bullet)
     
     for i=1,4 do
         local bulletCopy = shallowCopy(bullet)
+        bulletCopy.origSpeed = i * (2.5/4)
         bulletCopy.speed = i * (2.5/4)
         bulletCopy:addToPool()
     end

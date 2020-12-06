@@ -8,6 +8,7 @@
 ---@field public shootingType ShootingType
 Player = GameObject:new({
     top_left_sprite = 1,
+    origSpeed = 2,
     speed = 2,
     w = fromOct(1),
     h = fromOct(1),
@@ -15,6 +16,7 @@ Player = GameObject:new({
     movingx = false,
     movingy = false,
 
+    origMaxSpeed = 3,
     maxSpeed = 3,
     friction = 1,
     vx = 0,
@@ -67,7 +69,7 @@ function Player:getInput()
 end
 
 function Player:shoot()
-    self.shootingCooldown.value = min(self.shootingCooldown.value + 1, self.shootingCooldown.max)
+    self.shootingCooldown.value = min(self.shootingCooldown.value + self.shootingType.cooldownRate, self.shootingCooldown.max)
 
     if (btn(GAMEPAD.X)) and self.shootingCooldown.value == self.shootingCooldown.max then
 
