@@ -2,7 +2,6 @@
 
 function _init()
     cls() -- clear the screen
-    printh("", "log.txt", true) -- clear the log file
     dtb_init(3)
 
     music(MUSIC.ARPUMENT)

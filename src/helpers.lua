@@ -63,10 +63,10 @@ end
 
 --- log to console AND file
 ---@param text string
-function log(text)
-    printh(text)
-    printh(text, "log.txt")
-end
+--function log(text)
+--    printh(text)
+--    printh(text, "log.txt")
+--end
 
 ---@param x number
 ---@return number
