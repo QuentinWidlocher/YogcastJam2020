@@ -115,7 +115,7 @@ levels = {
             "- fear not, it won't matter once you're dead. goodbye."
         },
         enemy = function ()
-            BasicEnemy:new({
+            return BasicEnemy:new({
             top_left_sprite = 98,
             hurtSprite = 106,
             w = fromOct(2),

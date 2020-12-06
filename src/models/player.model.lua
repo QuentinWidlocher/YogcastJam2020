@@ -75,7 +75,7 @@ end
 function Player:shoot()
     self.shootingCooldown.value = min(self.shootingCooldown.value + self.shootingType.cooldownRate, self.shootingCooldown.max)
 
-    if (btn(GAMEPAD.X)) and self.shootingCooldown.value == self.shootingCooldown.max then
+    if (btn(GAMEPAD.X)) and self.shootingCooldown.value == self.shootingCooldown.max and bulletTimeout <= 0 then
 
         -- add the bullet to the pool so it'll be drawn and updated
         local newBullet = Bullet:new({
