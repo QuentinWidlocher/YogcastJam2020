@@ -22,6 +22,10 @@ BasicEnemy = GameObject:new({
     shootingType = DefaultShootingType:new(),
     movingType = DefaultEnemyMovingType:new(),
 
+    damage = 1,
+
+    dialogue = {},
+
     phase = 1,
     phases = {},
 
@@ -36,6 +40,9 @@ function BasicEnemy:update()
 end
 
 function BasicEnemy:init()
+    for _,text in ipairs(self.dialogue) do
+        dtb_disp(text)
+    end
     self.phase = #self.phases
     self:initPhase(#self.phases - self.phase + 1)
 end
@@ -44,6 +51,7 @@ function BasicEnemy:initPhase(phase)
     self.shootingType = self.phases[phase].shootingType
     self.shootingType.cooldown = { value = 0, max = self.phases[phase].bulletCooldown }
     self.shootingType.speed = self.phases[phase].bulletSpeed
+    self.damage = self.phases[phase].damage
     self.hp.max = self.phases[phase].hpMax
     self.hp.value = self.hp.max
 end
@@ -55,6 +63,7 @@ function BasicEnemy:shoot()
 
         local bullet = Bullet:new({ playerVersion = false })
         bullet:init()
+        bullet.dmg = self.damage
 
         local pos = self:getCenteredPos()
 
@@ -80,7 +89,7 @@ function BasicEnemy:move()
 end
 
 function BasicEnemy:hurt(dmg)
-    shake = 0.1
+    shake = 0.05
     sfx(SFX.ENEMY_DMG)
     
     self.hp.value = self.hp.value  - dmg
@@ -107,6 +116,6 @@ function BasicEnemy:isInsideAllowedZone()
 		x = main_camera.x + (self.w*2),
 		y = main_camera.y + self.h,
 		w = SCREEN_SIZE - (self.w*4),
-		h = SCREEN_SIZE/2 - self.h
+		h = SCREEN_SIZE/4 - self.h
 	})
 end

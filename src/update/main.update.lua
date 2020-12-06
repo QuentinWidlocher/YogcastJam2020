@@ -25,4 +25,5 @@ function update_game()
     update_player()
     update_enemies()
     update_bullets()
+    dtb_update()
 end
