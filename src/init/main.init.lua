@@ -3,6 +3,7 @@
 function _init()
     cls() -- clear the screen
     printh("", "log.txt", true) -- clear the log file
+    nextLevel()
     init_globals()
     init_camera()
     init_player()

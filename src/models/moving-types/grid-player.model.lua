@@ -1,4 +1,6 @@
-GridPlayerMovingType = shallowCopy(MovingType)
+GridPlayerMovingType = MovingType:new({
+    __type = "GridPlayerMovingType",
+})
 
 gridLerpTimer = 0
 

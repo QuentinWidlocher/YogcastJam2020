@@ -5,6 +5,7 @@
 ---@field public playerVersion boolean
 ---@field public dir Vector
 ---@field public life number
+---@field public movingType MovingType
 Bullet = GameObject:new({
     top_left_sprite = 66,
     enemyVersionSprite = 66,
@@ -12,12 +13,14 @@ Bullet = GameObject:new({
     playerVersion = true,
 
     speed = 2,
+    origSpeed = 2,
     dir = { x = 0, y = 0 },
-    life = 100,
     dmg = 1,
 
     w = fromOct(1),
     h = fromOct(1),
+
+    movingType = DefaultBulletMovingType:new(),
 
     __type = 'Bullet'
 })
@@ -27,7 +30,11 @@ function Bullet:init()
 end
 
 function Bullet:update()
-    self.x = self.x + (self.dir.x * self.speed)
-    self.y = self.y + (self.dir.y * self.speed)
-    self.life = self.life - 1
+    self.movingType:move(self)
+end
+
+function Bullet:addToPool()
+    if (#bulletPool < 200) then
+        add(bulletPool, self)
+    end
 end
