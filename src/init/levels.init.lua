@@ -1,12 +1,14 @@
 levelIndex = 0
 levels = {
     {
-        player = Player:new({
-            x = SCREEN_SIZE/2,
-            y = SCREEN_SIZE/2,
+        player = function ()
+            return Player:new({
+            x = SCREEN_SIZE/2 - 4,
+            y = SCREEN_SIZE/2 - 4,
             shootingType = DefaultShootingType:new(),
             movingType = DefaultPlayerMovingType:new(),
-        }),
+        })
+        end,
         music = MUSIC.MISSION,
         dialogue = {
                 "man, aimlessly floating around in space sure is great",
@@ -22,29 +24,33 @@ levels = {
                 "and that doesn't change the fact that you're about to get shot",
                 "is that so? enjoy the few remaining seconds of your life, criminal scum!",
             },
-        enemy = BasicEnemy:new({
+        enemy = function ()
+            return BasicEnemy:new({
             top_left_sprite = 64,
             hurtSprite = 72,
             w = fromOct(2),
             h = fromOct(2),
-            x = SCREEN_SIZE / 2,
-            y = SCREEN_SIZE / 4,
+            x = SCREEN_SIZE/2 - fromOct(1),
+            y = (SCREEN_SIZE/4),
             movingType = DefaultEnemyMovingType:new(),
             phases = {
-                {shootingType = DefaultShootingType:new(), bulletCooldown = 20, bulletSpeed = 1.5, hpMax = 1, damage = 10},
-                -- {shootingType = DefaultShootingType:new(), bulletCooldown = 10, bulletSpeed = 2, hpMax = 60, damage = 10},
-                -- {shootingType = HomingShootingType:new(), bulletCooldown = 15, bulletSpeed = 1, hpMax = 50, damage = 10},
-                -- {shootingType = TrishotShootingType:new(), bulletCooldown = 6, bulletSpeed = 4, hpMax = 50, damage = 10},
+                {shootingType = DefaultShootingType:new(), bulletCooldown = 20, bulletSpeed = 1.5, hpMax = 70, damage = 10},
+                {shootingType = DefaultShootingType:new(), bulletCooldown = 10, bulletSpeed = 2, hpMax = 60, damage = 10},
+                {shootingType = HomingShootingType:new(), bulletCooldown = 15, bulletSpeed = 1, hpMax = 50, damage = 10},
+                {shootingType = TrishotShootingType:new(), bulletCooldown = 6, bulletSpeed = 4, hpMax = 50, damage = 10},
             }
         })
+        end
     },
     {
-        player = Player:new({
+        player = function ()
+            return Player:new({
             x = SCREEN_SIZE/2,
             y = SCREEN_SIZE/2,
             shootingType = DefaultShootingType:new(),
             movingType = GridPlayerMovingType:new(),
-        }),
+        })
+        end,
         music = MUSIC.HIJINX,
         dialogue = {
             "greetings mortal.",
@@ -65,7 +71,8 @@ levels = {
             "what are you even talking about?",
             "never mind. let the fight commence!"
         },
-        enemy = BasicEnemy:new({
+        enemy = function ()
+            return BasicEnemy:new({
             top_left_sprite = 96,
             hurtSprite = 104,
             w = fromOct(2),
@@ -80,14 +87,17 @@ levels = {
                 {shootingType = TrishotShootingType:new(), bulletCooldown = 15, bulletSpeed = 4, hpMax = 50, damage = 10},
             }
         })
+        end
     },
     {
-        player = Player:new({
+        player = function ()
+            Player:new({
             x = SCREEN_SIZE/2,
             y = SCREEN_SIZE/2,
             shootingType = SuperhotShootingType:new(),
             movingType = SuperhotPlayerMovingType:new(),
-        }),
+        })
+        end,
         music = MUSIC.OUT_OF_CONTROL,
         dialogue = {
             "hello there.",
@@ -101,7 +111,8 @@ levels = {
             "why does everybody keep bringing that up?",
             "fear not, it won't matter once you're dead. goodbye."
         },
-        enemy = BasicEnemy:new({
+        enemy = function ()
+            BasicEnemy:new({
             top_left_sprite = 98,
             hurtSprite = 106,
             w = fromOct(2),
@@ -116,6 +127,7 @@ levels = {
                 {shootingType = SuperhotShootingType:new({ baseShootingType = TrishotShootingType:new()}), bulletCooldown = 15, bulletSpeed = 4, hpMax = 50, damage = 10},
             }
         })
+        end
     }
 }
 
@@ -123,13 +135,13 @@ function currentLevel() return levels[levelIndex] end
 
 function nextLevel()
     levelIndex = levelIndex + 1
-    player = currentLevel().player
-    enemy = currentLevel().enemy
+    player = currentLevel().player()
+    enemy = currentLevel().enemy()
     enemy:init()
     music(currentLevel().music)
 
     change_state(GAME_STATES.DIALOGUE)
-    
+
     for i,text in ipairs(currentLevel().dialogue) do
         dtb_disp(text, function ()
             if i >= #currentLevel().dialogue then

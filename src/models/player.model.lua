@@ -115,6 +115,13 @@ function Player:hurt(dmg)
         self.hp.value = self.hp.value  - dmg
         self.hurtCooldown.value = 0
     end
+
+    if (self.hp.value <= 0) then
+        music(MUSIC.ARPUMENT)
+        change_state(GAME_STATES.GAME_OVER)
+        levelIndex = 0
+    end
+
 end
 
 function Player:updateFlames()

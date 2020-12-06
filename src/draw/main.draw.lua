@@ -4,6 +4,7 @@ draw_fun = {
     [GAME_STATES.MAIN_MENU] = function() draw_main_screen() end,
     [GAME_STATES.DIALOGUE] = function() draw_dialogue() end,
     [GAME_STATES.GAME] = function() draw_game() end,
+    [GAME_STATES.GAME_OVER] = function() draw_gameover() end,
 }
 
 function _draw()
@@ -76,4 +77,13 @@ function draw_game()
     draw_bossbar()
     draw_player_bar()
     draw_debug(false)
+end
+
+function draw_gameover()
+    cls(0)
+    print("you died", text_x_pos("you died"), (SCREEN_SIZE/2)-2)
+    local text = "hopefully hell doesn't have"
+    local text2 = "parking inspectors"
+    print(text, text_x_pos(text), (SCREEN_SIZE/2)+16)
+    print(text2, text_x_pos(text2), (SCREEN_SIZE/2)+22)
 end
