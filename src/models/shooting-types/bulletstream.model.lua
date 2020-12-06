@@ -2,7 +2,7 @@
 BulletstreamShootingType = ShootingType:new({
     cooldown = { value = 0, max = 40 },
     speed = 2.5,
-    sprite = 68,
+    sprite = 66,
 
     __type = "BulletstreamShootingType",
 })

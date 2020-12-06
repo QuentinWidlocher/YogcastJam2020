@@ -11,18 +11,18 @@ levels = {
         end,
         music = MUSIC.MISSION,
         dialogue = {
-                "- man, aimlessly floating around in space sure is great",
-                "oh my goodness would you look at that, it's christmas",
-                "i should go celebrate with my friends or something",
-                "- not so fast!",
-                "- who're you?",
-                "i'm the interstellar parking inspector, and you've been parked here for way too long!",
-                "- man how am i going to afford any presents now?",
-                "- not my problem hombre",
-                "- i was literally just floating through space and time",
-                "- doesn't change the fact that you're about to get a ridiculously high fine",
-                "- and that doesn't change the fact that you're about to get shot",
-                "- is that so? enjoy the few remaining seconds of your life, criminal scum!",
+                "YOU: man, aimlessly floating around in space sure is great",
+                "YOU: oh my goodness would you look at that, it's christmas",
+                "YOU: i should go celebrate with my friends or something",
+                "?: not so fast!",
+                "YOU: who're you?",
+                "?: i'm the interstellar parking inspector, and you've been parked here for way too long!",
+                "YOU: man how am i going to afford any presents now?",
+                "POPO: not my problem hombre",
+                "YOU: i was literally just floating through space and time",
+                "POPO: doesn't change the fact that you're about to get a ridiculously high fine",
+                "YOU: and that doesn't change the fact that you're about to get shot",
+                "POPO: is that so? enjoy the few remaining seconds of your life, criminal scum!",
             },
         enemy = function ()
             return BasicEnemy:new({
@@ -34,10 +34,10 @@ levels = {
             y = (SCREEN_SIZE/4),
             movingType = DefaultEnemyMovingType:new(),
             phases = {
-                {shootingType = DefaultShootingType:new(), bulletCooldown = 20, bulletSpeed = 1.5, hpMax = 70, damage = 10},
-                {shootingType = DefaultShootingType:new(), bulletCooldown = 10, bulletSpeed = 2, hpMax = 60, damage = 10},
+                {shootingType = DefaultShootingType:new(), bulletCooldown = 20, bulletSpeed = 1.5, hpMax = 50, damage = 20},
+                {shootingType = DefaultShootingType:new(), bulletCooldown = 10, bulletSpeed = 2, hpMax = 50, damage = 20},
                 {shootingType = HomingShootingType:new(), bulletCooldown = 15, bulletSpeed = 1, hpMax = 50, damage = 10},
-                {shootingType = TrishotShootingType:new(), bulletCooldown = 6, bulletSpeed = 4, hpMax = 50, damage = 10},
+                {shootingType = TrishotShootingType:new(), bulletCooldown = 10, bulletSpeed = 4, hpMax = 50, damage = 10},
             }
         })
         end
@@ -81,10 +81,10 @@ levels = {
             y = SCREEN_SIZE / 4,
             movingType = DefaultEnemyMovingType:new(),
             phases = {
-                {shootingType = DefaultShootingType:new(), bulletCooldown = 20, bulletSpeed = 1.5, hpMax = 70, damage = 10},
-                {shootingType = DefaultShootingType:new(), bulletCooldown = 10, bulletSpeed = 2, hpMax = 60, damage = 10},
-                {shootingType = HomingShootingType:new(), bulletCooldown = 15, bulletSpeed = 1, hpMax = 50, damage = 10},
-                {shootingType = TrishotShootingType:new(), bulletCooldown = 15, bulletSpeed = 4, hpMax = 50, damage = 10},
+                {shootingType = DefaultShootingType:new(), bulletCooldown = 20, bulletSpeed = 1.5, hpMax = 50, damage = 10},
+                {shootingType = BrokenTentacleShootingType:new(), bulletCooldown = 2, bulletSpeed = 3, hpMax = 40, damage = 5},
+                {shootingType = SlowfillShootingType:new(), bulletCooldown = 20, bulletSpeed = 0.02, hpMax = 70, damage = 10},
+                {shootingType = TrishotShootingType:new(), bulletCooldown = 15, bulletSpeed = 4, hpMax = 50, damage = 20},
             }
         })
         end
@@ -121,10 +121,10 @@ levels = {
             y = SCREEN_SIZE / 4,
             movingType = SuperhotEnemyMovingType:new(),
             phases = {
-                {shootingType = SuperhotShootingType:new({ baseShootingType = DefaultShootingType:new()}), bulletCooldown = 20, bulletSpeed = 1.5, hpMax = 70, damage = 10},
-                {shootingType = SuperhotShootingType:new({ baseShootingType = DefaultShootingType:new()}), bulletCooldown = 10, bulletSpeed = 2, hpMax = 60, damage = 10},
-                {shootingType = SuperhotShootingType:new({ baseShootingType = HomingShootingType:new()}), bulletCooldown = 15, bulletSpeed = 1, hpMax = 50, damage = 10},
-                {shootingType = SuperhotShootingType:new({ baseShootingType = TrishotShootingType:new()}), bulletCooldown = 15, bulletSpeed = 4, hpMax = 50, damage = 10},
+                {shootingType = SuperhotShootingType:new({ baseShootingType = TrishotShootingType:new()}), bulletCooldown = 8, bulletSpeed = 4, hpMax = 40, damage = 10},
+                {shootingType = SuperhotShootingType:new({ baseShootingType = BulletstreamShootingType:new()}), bulletCooldown = 15, bulletSpeed = 1, hpMax = 40, damage = 5},
+                {shootingType = SuperhotShootingType:new({ baseShootingType = BrokenTentacleShootingType:new()}), bulletCooldown = 1, bulletSpeed = 7, hpMax = 40, damage = 10},
+                {shootingType = SuperhotShootingType:new({ baseShootingType = DefaultShootingType:new()}), bulletCooldown = 3, bulletSpeed = 3, hpMax = 30, damage = 5},
             }
         })
         end
