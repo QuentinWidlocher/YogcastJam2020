@@ -7,13 +7,14 @@
 ---@field public bulletPool Bullet[]
 ---@field public shootingType DefaultShootingType
 BasicEnemy = GameObject:new({
+    origSpeed = 1,
     speed = 1,
     dir = getRandomDirection(),
     hp = { value = 100, max = 100 },
     movingCooldown = { value = 0, max = 10 },
     hurtCooldown = { value = 0, max = 5 },
-    shootingType = shallowCopy(DefaultShootingType),
-    movingType = shallowCopy(DefaultEnemyMovingType),
+    shootingType = DefaultShootingType:new(),
+    movingType = DefaultEnemyMovingType:new(),
     phase = 1,
     __type = "BasicEnemy",
     phases = {}
@@ -39,17 +40,24 @@ function BasicEnemy:initPhase(phase)
 end
 
 function BasicEnemy:shoot()
-    self.shootingType.cooldown.value = self.shootingType.cooldown.value + 1
+    self.shootingType.cooldown.value = self.shootingType.cooldown.value + self.shootingType.cooldownRate
 
     if self.shootingType.cooldown.value >= self.shootingType.cooldown.max then
+
+        local bullet = Bullet:new({ playerVersion = false })
+        bullet:init()
+
         local pos = self:getCenteredPos()
+
+        pos = {
+            x = pos.x - (bullet.w/2),
+            y = pos.y - (bullet.h/2),
+        }
+
         local targetPos = player:getCenteredPos()
 
         self.shootingType.from = pos
         self.shootingType.dir = subtractVectors(pos, targetPos)
-
-        local bullet = Bullet:new({ playerVersion = false })
-        bullet:init()
 
         self.shootingType:shoot(bullet)
 

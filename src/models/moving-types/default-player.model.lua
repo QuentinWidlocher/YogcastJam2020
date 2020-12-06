@@ -1,5 +1,7 @@
 ---@class DefaultPlayerMovingType : MovingType
-DefaultPlayerMovingType = shallowCopy(MovingType)
+DefaultPlayerMovingType = MovingType:new({
+    __type = "DefaultPlayerMovingType",
+})
 
 function DefaultPlayerMovingType:move(player)
 

@@ -1,5 +1,7 @@
 ---@class DefaultEnemyMovingType : MovingType
-DefaultEnemyMovingType = shallowCopy(MovingType)
+DefaultEnemyMovingType = MovingType:new({
+    __type = "DefaultEnemyMovingType",
+})
 
 function DefaultEnemyMovingType:move(enemy)
 

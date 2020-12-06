@@ -10,15 +10,20 @@ __lua__
 #include src/models/game-object.model.lua
 
 #include src/models/shooting-types/shooting-type.model.lua
+#include src/models/shooting-types/default.model.lua
+#include src/models/shooting-types/superhot.model.lua
 #include src/models/shooting-types/trishot.model.lua
 #include src/models/shooting-types/homing.model.lua
-#include src/models/shooting-types/default.model.lua
 #include src/models/shooting-types/trishot.model.lua
 #include src/models/shooting-types/bulletstream.model.lua
 
 #include src/models/moving-types/moving-type.model.lua
+#include src/models/moving-types/default-bullet.model.lua
 #include src/models/moving-types/default-player.model.lua
 #include src/models/moving-types/default-enemy.model.lua
+#include src/models/moving-types/superhot-player.model.lua
+#include src/models/moving-types/superhot-bullet.model.lua
+#include src/models/moving-types/superhot-enemy.model.lua
 #include src/models/moving-types/grid-player.model.lua
 
 #include src/models/bullet.model.lua
@@ -26,6 +31,8 @@ __lua__
 #include src/models/basic-enemy.model.lua
 #include src/models/camera.model.lua
 #include src/models/bg-particle.model.lua
+
+#include src/models/superhot-modifier.model.lua
 
 #include src/init/camera.init.lua
 #include src/init/player.init.lua
@@ -324,3 +331,10 @@ __sfx__
 000200002e650006002d65019650136201362015650196501d6502065023650246502465023640206401e6401d6401c6401a640186401564013640106300d6300962007610056000060001600006001650016500
 0001000000150011500215003150071500c150111501a150271503a150187000765008650096500965009650096500965009650096500965009650267002b200297002d20034d002f2000e700137003120011700
 00010000064500a4500d4501345015450114500845003450012000120000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+0110000021050210002305023000240502400028050000002b05000000290502500026050280002905000000280502500025000000002105000000000002700000000260500a000240500d000220500000021050
+011000000000000000000001c050000000000000000000001c050000001d050000001f05000000210500000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+0010000000000000000000000000000000000000000000000000000000000000000000000000002c1303500029130271302513031000231302d00022130000002113000000221300000000000000000000000000
+__music__
+00 03424344
+00 04054344
+

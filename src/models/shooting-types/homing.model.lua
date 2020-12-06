@@ -1,8 +1,11 @@
 ---@class HomingShootingType : ShootingType
-HomingShootingType = shallowCopy(ShootingType)
-HomingShootingType.cooldown = { value = 0, max = 20 }
-HomingShootingType.speed = 1
-HomingShootingType.sprite = 66
+HomingShootingType = ShootingType:new({
+    cooldown = { value = 0, max = 20 },
+    speed = 1,
+    sprite = 66,
+
+    __type = "HomingShootingType",
+})
 
 ---@param bullet Bullet
 function HomingShootingType:shoot(bullet)
@@ -65,11 +68,10 @@ function HomingShootingType:shoot(bullet)
         if (target ~= nil) then
             self.dir = normalize(subtractVectors(self:getCenteredPos(), target))
         end
-
-        self.x = self.x + (self.dir.x * self.speed)
-        self.y = self.y + (self.dir.y * self.speed)
+        
+        bullet.movingType:move(bullet)
     end
 
     -- add the bullet to the pool so it'll be drawn and updated
-    add(bulletPool, bullet)
+    bullet:addToPool()
 end

@@ -1,8 +1,11 @@
 ---@class BulletstreamShootingType : ShootingType
-BulletstreamShootingType = shallowCopy(ShootingType)
-BulletstreamShootingType.cooldown = { value = 0, max = 40 }
-BulletstreamShootingType.speed = 2.5
-BulletstreamShootingType.sprite = 68
+BulletstreamShootingType = ShootingType:new({
+    cooldown = { value = 0, max = 40 },
+    speed = 2.5,
+    sprite = 68,
+
+    __type = "BulletstreamShootingType",
+})
 
 ---@param bullet Bullet
 function BulletstreamShootingType:shoot(bullet)
@@ -14,7 +17,8 @@ function BulletstreamShootingType:shoot(bullet)
     
     for i=1,4 do
         local bulletCopy = shallowCopy(bullet)
+        bulletCopy.origSpeed = i * (2.5/4)
         bulletCopy.speed = i * (2.5/4)
-        add(bulletPool, bulletCopy)
+        bulletCopy:addToPool()
     end
 end

@@ -1,8 +1,11 @@
 ---@class TrishotShootingType : ShootingType
-TrishotShootingType = shallowCopy(ShootingType)
-TrishotShootingType.cooldown = { value = 0, max = 20 }
-TrishotShootingType.speed = 1
-TrishotShootingType.sprite = 69
+TrishotShootingType = ShootingType:new({
+    cooldown = { value = 0, max = 20 },
+    speed = 1,
+    sprite = 69,
+
+    __type = "TrishotShootingType",
+})
 
 ---@param bullet Bullet
 function TrishotShootingType:shoot(bullet)
@@ -21,7 +24,7 @@ function TrishotShootingType:shoot(bullet)
     lBullet.dir = rotateVector(bullet.dir, -rad)
 
     -- add the bullet to the pool so it'll be drawn and updated
-    add(bulletPool, bullet)
-    add(bulletPool, rBullet)
-    add(bulletPool, lBullet)
+    bullet:addToPool()
+    rBullet:addToPool()
+    lBullet:addToPool()
 end

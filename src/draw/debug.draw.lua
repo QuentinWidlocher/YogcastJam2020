@@ -7,7 +7,10 @@ function draw_debug(draw)
         {label = "mem", value = ceil((stat(0)/2048)*100).."%"},
         {label = "cpu", value = ceil(stat(1)*100).."%"},
         -- {label = "state", value = STATE},
-        {label = "player hp", value = player.hp.value.."/"..player.hp.max},
+        -- {label = "player hp", value = player.hp.value.."/"..player.hp.max},
+        {label = "bullets", value = #bulletPool},
+        {label = "cd", value = enemies[1].shootingType.cooldown.value.."/"..enemies[1].shootingType.cooldown.max},
+        -- {label = "time", value = SuperhotModifier.timeMod},
     }
     for i = 1, #debug do
         local dbg = debug[i]

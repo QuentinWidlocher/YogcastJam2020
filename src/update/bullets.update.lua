@@ -18,7 +18,7 @@ function update_bullets()
             end
         end
 
-        if (bullet.life <= 0) then 
+        if not bullet:isInsideScreen() then 
             add(bulletsToDelete, i)
         end
     end

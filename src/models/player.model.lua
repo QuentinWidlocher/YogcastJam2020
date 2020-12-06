@@ -8,6 +8,7 @@
 ---@field public shootingType ShootingType
 Player = GameObject:new({
     top_left_sprite = 1,
+    origSpeed = 2,
     speed = 2,
     w = fromOct(1),
     h = fromOct(1),
@@ -15,6 +16,7 @@ Player = GameObject:new({
     movingx = false,
     movingy = false,
 
+    origMaxSpeed = 3,
     maxSpeed = 3,
     friction = 1,
     vx = 0,
@@ -30,10 +32,8 @@ Player = GameObject:new({
 
     dmg = 1,
     shootingCooldown = { value = 0, max = 4 }, -- can shoot when value == max
-    shootingType = DefaultShootingType,
-
-    movingType = DefaultPlayerMovingType,
-
+    shootingType = DefaultShootingType:new(),
+    movingType = DefaultPlayerMovingType:new(),
     flameCounter = 0,
     flameSprite = SPRITES.FLAMES.OFF,
 
@@ -73,7 +73,7 @@ function Player:getInput()
 end
 
 function Player:shoot()
-    self.shootingCooldown.value = min(self.shootingCooldown.value + 1, self.shootingCooldown.max)
+    self.shootingCooldown.value = min(self.shootingCooldown.value + self.shootingType.cooldownRate, self.shootingCooldown.max)
 
     if (btn(GAMEPAD.X)) and self.shootingCooldown.value == self.shootingCooldown.max then
 
@@ -149,4 +149,8 @@ function Player:getHitBox()
         h = self.h - 5,
         w = self.w - 5,
     }
+end
+
+function Player:isMoving()
+    return self.movingx or self.movingy
 end
