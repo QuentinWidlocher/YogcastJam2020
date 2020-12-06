@@ -3,7 +3,9 @@
 function _init()
     cls() -- clear the screen
     printh("", "log.txt", true) -- clear the log file
-    nextLevel()
+
+    music(MUSIC.ARPUMENT)
+
     init_globals()
     init_camera()
     init_player()

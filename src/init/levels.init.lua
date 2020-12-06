@@ -7,6 +7,7 @@ levels = {
             shootingType = DefaultShootingType:new(),
             movingType = DefaultPlayerMovingType:new(),
         }),
+        music = MUSIC.MISSION,
         enemy = BasicEnemy:new({
             top_left_sprite = 64,
             hurtSprite = 72,
@@ -30,6 +31,7 @@ levels = {
             shootingType = DefaultShootingType:new(),
             movingType = GridPlayerMovingType:new(),
         }),
+        music = MUSIC.HIJINX,
         enemy = BasicEnemy:new({
             top_left_sprite = 96,
             hurtSprite = 104,
@@ -53,6 +55,7 @@ levels = {
             shootingType = SuperhotShootingType:new(),
             movingType = SuperhotPlayerMovingType:new(),
         }),
+        music = MUSIC.OUT_OF_CONTROL,
         enemy = BasicEnemy:new({
             top_left_sprite = 98,
             hurtSprite = 106,
@@ -78,4 +81,5 @@ function nextLevel()
     player = currentLevel().player
     enemy = currentLevel().enemy
     enemy:init()
+    music(currentLevel().music)
 end

@@ -15,6 +15,7 @@ function update_main_screen()
 
     if (btnp(GAMEPAD.X) or btnp(GAMEPAD.O)) then 
         change_state(GAME_STATES.GAME)
+        nextLevel()
     end
 end
 

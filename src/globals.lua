@@ -41,9 +41,16 @@ SPRITES = {
 }
 
 SFX = {
-    PLAYER_DMG = 0,
-    ENEMY_DMG = 1,
-    PLAYER_BULLET = 2,
+    PLAYER_DMG = 9,
+    ENEMY_DMG = 10,
+    PLAYER_BULLET = 11,
+}
+
+MUSIC = {
+    ARPUMENT = 0,
+    MISSION = 11,
+    HIJINX = 17,
+    OUT_OF_CONTROL = 27,
 }
 
 STATES = {
