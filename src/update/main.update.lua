@@ -16,7 +16,7 @@ function update_main_screen()
 
     sspr()
 
-    if (btnp(GAMEPAD.X) or btnp(GAMEPAD.O)) then 
+    if (btnp(GAMEPAD.X)) then 
         nextLevel()
         startTime = time()
         change_state(GAME_STATES.DIALOGUE)
@@ -39,7 +39,7 @@ function update_game()
 end
 
 function update_gameover()
-    if (btnp(GAMEPAD.X) or btnp(GAMEPAD.O)) then 
+    if (btnp(GAMEPAD.O)) then 
         change_state(GAME_STATES.MAIN_MENU)
     end
 end

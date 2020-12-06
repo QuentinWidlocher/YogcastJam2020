@@ -27,11 +27,11 @@ Player = GameObject:new({
     origx = fromOct(8),
     origy = fromOct(8),
 
-    hp = { value = 100, max = 100 }, -- can be damaged when value == max
-    hurtCooldown = { value = 20, max = 20 },
+    hp = shallowCopy({ value = 150, max = 150 }), -- can be damaged when value == max
+    hurtCooldown = shallowCopy({ value = 20, max = 20 }),
 
     dmg = 1,
-    shootingCooldown = { value = 0, max = 4 }, -- can shoot when value == max
+    shootingCooldown = shallowCopy({ value = 0, max = 4 }), -- can shoot when value == max
     shootingType = DefaultShootingType:new(),
     movingType = DefaultPlayerMovingType:new(),
     flameCounter = 0,
@@ -75,7 +75,7 @@ end
 function Player:shoot()
     self.shootingCooldown.value = min(self.shootingCooldown.value + self.shootingType.cooldownRate, self.shootingCooldown.max)
 
-    if (btn(GAMEPAD.X) or btn(GAMEPAD.O)) and self.shootingCooldown.value == self.shootingCooldown.max then
+    if (btn(GAMEPAD.X)) and self.shootingCooldown.value == self.shootingCooldown.max then
 
         -- add the bullet to the pool so it'll be drawn and updated
         local newBullet = Bullet:new({

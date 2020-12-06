@@ -25,9 +25,7 @@ bulletTimeout = 60
 
 function bulletClearIfTimeout()
     if bulletTimeout > 0 then
-        for k in ipairs(bulletPool) do
-            bulletPool[k] = nil
-        end
+        bulletPool = {}
     end
     bulletTimeout = bulletTimeout - 1
 end

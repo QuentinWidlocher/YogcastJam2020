@@ -29,7 +29,8 @@ function draw_main_screen()
     )
 
     print("⬆️⬇️⬅️➡️\t\tmove around", (SCREEN_SIZE/2) - (fromOct(13)/2), fromOct(13), 7)
-    print("\x8e or \x97\t\tshoot", (SCREEN_SIZE/2) - (fromOct(13)/2), fromOct(14), 7)
+    print("\x97\t\t\t\t\t\t\t\tshoot", (SCREEN_SIZE/2) - (fromOct(13)/2), fromOct(14), 7)
+    print("\x8e\t\t\t\t\t\t\t\tnext dialogue", (SCREEN_SIZE/2) - (fromOct(13)/2), fromOct(15), 7)
 
     local text = "- shoot to play -"
     local speed = 50

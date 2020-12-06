@@ -4,9 +4,10 @@ levels = {
         player = function ()
             return Player:new({
             x = SCREEN_SIZE/2 - 4,
-            y = SCREEN_SIZE/2 - 4,
+            y = ((SCREEN_SIZE/4)*3) - fromOct(1),
             shootingType = DefaultShootingType:new(),
             movingType = DefaultPlayerMovingType:new(),
+            hp = shallowCopy({ value = 150, max = 150 })
         })
         end,
         music = MUSIC.MISSION,
@@ -49,6 +50,7 @@ levels = {
             y = SCREEN_SIZE/2,
             shootingType = DefaultShootingType:new(),
             movingType = GridPlayerMovingType:new(),
+            hp = shallowCopy({ value = 150, max = 150 })
         })
         end,
         music = MUSIC.HIJINX,
@@ -96,6 +98,7 @@ levels = {
             y = SCREEN_SIZE/2,
             shootingType = SuperhotShootingType:new(),
             movingType = SuperhotPlayerMovingType:new(),
+            hp = shallowCopy({ value = 150, max = 150 })
         })
         end,
         music = MUSIC.OUT_OF_CONTROL,
@@ -134,6 +137,7 @@ levels = {
 function currentLevel() return levels[levelIndex] end
 
 function nextLevel()
+    bulletPool = {}
     levelIndex = levelIndex + 1
 
     if levelIndex <= #levels then
