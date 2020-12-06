@@ -1,7 +1,7 @@
 -- State Machine
 GAME_STATES = {
     MAIN_MENU = 0,
-    HELP_SCREEN = 1,
+    DIALOGUE = 1,
     GAME = 2,
     GAME_OVER = 3,
 }
