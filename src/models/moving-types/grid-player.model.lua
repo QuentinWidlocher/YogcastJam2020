@@ -1,4 +1,6 @@
-GridPlayerMovingType = MovingType:new()
+GridPlayerMovingType = MovingType:new({
+    __type = "GridPlayerMovingType",
+})
 
 playerGridx = 8
 playerGridy = 8

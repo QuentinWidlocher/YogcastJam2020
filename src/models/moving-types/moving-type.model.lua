@@ -1,5 +1,7 @@
 ---@class MovingType
-MovingType = {}
+MovingType = {
+    __type = "MovingType",
+}
 
 ---@param o MovingType
 ---@return MovingType

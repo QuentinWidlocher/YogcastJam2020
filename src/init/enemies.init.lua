@@ -9,8 +9,10 @@ function init_enemies()
         h = fromOct(2),
         x = SCREEN_SIZE / 2,
         y = SCREEN_SIZE / 4,
-        shootingType = DefaultShootingType:new(),
-        movingType = DefaultEnemyMovingType:new(),
+        shootingType = SuperhotShootingType:new({
+            baseShootingType = HomingShootingType:new()
+        }),
+        movingType = SuperhotEnemyMovingType:new(),
     })
 
     add(enemies, enemy)

@@ -10,9 +10,10 @@ __lua__
 #include src/models/game-object.model.lua
 
 #include src/models/shooting-types/shooting-type.model.lua
+#include src/models/shooting-types/default.model.lua
+#include src/models/shooting-types/superhot.model.lua
 #include src/models/shooting-types/trishot.model.lua
 #include src/models/shooting-types/homing.model.lua
-#include src/models/shooting-types/default.model.lua
 #include src/models/shooting-types/trishot.model.lua
 #include src/models/shooting-types/bulletstream.model.lua
 
@@ -20,6 +21,9 @@ __lua__
 #include src/models/moving-types/default-bullet.model.lua
 #include src/models/moving-types/default-player.model.lua
 #include src/models/moving-types/default-enemy.model.lua
+#include src/models/moving-types/superhot-player.model.lua
+#include src/models/moving-types/superhot-bullet.model.lua
+#include src/models/moving-types/superhot-enemy.model.lua
 #include src/models/moving-types/grid-player.model.lua
 
 #include src/models/bullet.model.lua

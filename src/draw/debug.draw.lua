@@ -8,6 +8,7 @@ function draw_debug(draw)
         {label = "cpu", value = ceil(stat(1)*100).."%"},
         -- {label = "state", value = STATE},
         {label = "player hp", value = player.hp.value.."/"..player.hp.max},
+        {label = "bullets", value = #bulletPool},
     }
     for i = 1, #debug do
         local dbg = debug[i]

@@ -14,7 +14,6 @@ Bullet = GameObject:new({
 
     speed = 2,
     dir = { x = 0, y = 0 },
-    life = 100,
     dmg = 1,
 
     w = fromOct(1),
@@ -31,5 +30,10 @@ end
 
 function Bullet:update()
     self.movingType:move(self)
-    self.life = self.life - 1
+end
+
+function Bullet:addToPool()
+    if (#bulletPool < 200) then
+        add(bulletPool, self)
+    end
 end

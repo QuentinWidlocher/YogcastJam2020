@@ -1,5 +1,7 @@
 ---@class DefaultEnemyMovingType : MovingType
-DefaultEnemyMovingType = MovingType:new()
+DefaultEnemyMovingType = MovingType:new({
+    __type = "DefaultEnemyMovingType",
+})
 
 function DefaultEnemyMovingType:move(enemy)
 

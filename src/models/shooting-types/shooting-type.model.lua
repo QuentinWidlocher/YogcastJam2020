@@ -9,7 +9,9 @@ ShootingType = {
     dir = { x = 0, y = 0},
     cooldown = { value = 0, max = 10 },
     speed = 1,
-    sprite = 79
+    sprite = 79,
+
+    __type = "ShootingType",
 }
 
 ---@param o ShootingType

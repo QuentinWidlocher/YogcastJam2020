@@ -32,14 +32,21 @@ function BasicEnemy:shoot()
     self.shootingType.cooldown.value = self.shootingType.cooldown.value + 1
 
     if self.shootingType.cooldown.value >= self.shootingType.cooldown.max then
+
+        local bullet = Bullet:new({ playerVersion = false })
+        bullet:init()
+
         local pos = self:getCenteredPos()
+
+        pos = {
+            x = pos.x - (bullet.w/2),
+            y = pos.y - (bullet.h/2),
+        }
+
         local targetPos = player:getCenteredPos()
 
         self.shootingType.from = pos
         self.shootingType.dir = subtractVectors(pos, targetPos)
-
-        local bullet = Bullet:new({ playerVersion = false })
-        bullet:init()
 
         self.shootingType:shoot(bullet)
 
