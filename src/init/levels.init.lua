@@ -35,10 +35,10 @@ levels = {
             y = (SCREEN_SIZE/4),
             movingType = DefaultEnemyMovingType:new(),
             phases = {
-                {shootingType = DefaultShootingType:new(), bulletCooldown = 20, bulletSpeed = 1.5, hpMax = 50, damage = 20},
-                {shootingType = DefaultShootingType:new(), bulletCooldown = 10, bulletSpeed = 2, hpMax = 50, damage = 20},
-                {shootingType = HomingShootingType:new(), bulletCooldown = 15, bulletSpeed = 1, hpMax = 50, damage = 10},
-                {shootingType = TrishotShootingType:new(), bulletCooldown = 10, bulletSpeed = 4, hpMax = 50, damage = 10},
+                {shootingType = DefaultShootingType:new(), bulletCooldown = 20, bulletSpeed = 1.5, hpMax = 50, damage = 10},
+                {shootingType = DefaultShootingType:new(), bulletCooldown = 10, bulletSpeed = 2, hpMax = 50, damage = 10},
+                {shootingType = HomingShootingType:new(), bulletCooldown = 15, bulletSpeed = 1, hpMax = 50, damage = 15},
+                {shootingType = TrishotShootingType:new(), bulletCooldown = 10, bulletSpeed = 3, hpMax = 50, damage = 7},
             }
         })
         end
@@ -79,13 +79,13 @@ levels = {
             hurtSprite = 104,
             w = fromOct(2),
             h = fromOct(2),
-            x = SCREEN_SIZE / 2,
-            y = SCREEN_SIZE / 4,
+            x = SCREEN_SIZE/2 - fromOct(1),
+            y = (SCREEN_SIZE/4),
             movingType = DefaultEnemyMovingType:new(),
             phases = {
                 {shootingType = DefaultShootingType:new(), bulletCooldown = 20, bulletSpeed = 1.5, hpMax = 50, damage = 10},
                 {shootingType = BrokenTentacleShootingType:new(), bulletCooldown = 2, bulletSpeed = 3, hpMax = 40, damage = 5},
-                {shootingType = SlowfillShootingType:new(), bulletCooldown = 20, bulletSpeed = 0.02, hpMax = 70, damage = 10},
+                {shootingType = SlowfillShootingType:new(), bulletCooldown = 20, bulletSpeed = 0.03, hpMax = 70, damage = 10},
                 {shootingType = TrishotShootingType:new(), bulletCooldown = 15, bulletSpeed = 4, hpMax = 50, damage = 20},
             }
         })
@@ -93,7 +93,7 @@ levels = {
     },
     {
         player = function ()
-            Player:new({
+            return Player:new({
             x = SCREEN_SIZE/2,
             y = SCREEN_SIZE/2,
             shootingType = SuperhotShootingType:new(),
@@ -120,8 +120,8 @@ levels = {
             hurtSprite = 106,
             w = fromOct(2),
             h = fromOct(2),
-            x = SCREEN_SIZE / 2,
-            y = SCREEN_SIZE / 4,
+            x = SCREEN_SIZE/2 - fromOct(1),
+            y = (SCREEN_SIZE/4),
             movingType = SuperhotEnemyMovingType:new(),
             phases = {
                 {shootingType = SuperhotShootingType:new({ baseShootingType = TrishotShootingType:new()}), bulletCooldown = 8, bulletSpeed = 4, hpMax = 40, damage = 10},
