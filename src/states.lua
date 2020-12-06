@@ -4,6 +4,7 @@ GAME_STATES = {
     DIALOGUE = 1,
     GAME = 2,
     GAME_OVER = 3,
+    ENDING = 4,
 }
 
 ---@type integer

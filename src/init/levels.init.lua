@@ -11,18 +11,18 @@ levels = {
         end,
         music = MUSIC.MISSION,
         dialogue = {
-                "man, aimlessly floating around in space sure is great",
+                "- man, aimlessly floating around in space sure is great",
                 "oh my goodness would you look at that, it's christmas",
                 "i should go celebrate with my friends or something",
-                "not so fast!",
-                "who're you?",
+                "- not so fast!",
+                "- who're you?",
                 "i'm the interstellar parking inspector, and you've been parked here for way too long!",
-                "man how am i going to afford any presents now?",
-                "not my problem hombre",
-                "i was literally just floating through space and time",
-                "doesn't change the fact that you're about to get a ridiculously high fine",
-                "and that doesn't change the fact that you're about to get shot",
-                "is that so? enjoy the few remaining seconds of your life, criminal scum!",
+                "- man how am i going to afford any presents now?",
+                "- not my problem hombre",
+                "- i was literally just floating through space and time",
+                "- doesn't change the fact that you're about to get a ridiculously high fine",
+                "- and that doesn't change the fact that you're about to get shot",
+                "- is that so? enjoy the few remaining seconds of your life, criminal scum!",
             },
         enemy = function ()
             return BasicEnemy:new({
@@ -53,23 +53,23 @@ levels = {
         end,
         music = MUSIC.HIJINX,
         dialogue = {
-            "greetings mortal.",
-            "aww cmon, what is it now?",
-            "it is i, the omnipotent floating space eye cube.",
-            "ok?",
-            "my eye has sensed that you have violated interstellar parking laws.",
-            "really now",
-            "it is my obligation to maintain order in this universe, and you are making my job a real pain in the ass.",
-            "that's one lame job",
-            "not as lame as your mother. ha-ha.",
-            "was that... a joke?",
-            "i have been practicing.",
-            "how about you practice dying instead",
-            "you wish to fight? very well. you may notice you can only move in a grid now.",
-            "man, i just got used to flying normally",
-            "this is pretty \"surprising\", wouldn't you agree?",
-            "what are you even talking about?",
-            "never mind. let the fight commence!"
+            "- greetings mortal.",
+            "- aww cmon, what is it now?",
+            "- it is i, the omnipotent floating space eye cube.",
+            "- ok?",
+            "- my eye has sensed that you have violated interstellar parking laws.",
+            "- really now",
+            "- it is my obligation to maintain order in this universe, and you are making my job a real pain in the ass.",
+            "- that's one lame job",
+            "- not as lame as your mother. ha-ha.",
+            "- was that... a joke?",
+            "- i have been practicing.",
+            "- how about you practice dying instead",
+            "- you wish to fight? very well. you may notice you can only move in a grid now.",
+            "- man, i just got used to flying normally",
+            "- this is pretty \"surprising\", wouldn't you agree?",
+            "- what are you even talking about?",
+            "- never mind. let the fight commence!"
         },
         enemy = function ()
             return BasicEnemy:new({
@@ -100,16 +100,16 @@ levels = {
         end,
         music = MUSIC.OUT_OF_CONTROL,
         dialogue = {
-            "hello there.",
-            "what the heck",
-            "i'm time itself. i've had to step in because it seems like you've erased my best friend, floaty space cube.",
-            "you were friends with that thing?",
-            "it's a great guy when you get to know it.",
+            "- hello there.",
+            "- what the heck",
+            "- i'm time itself. i've had to step in because it seems like you've erased my best friend, floaty space cube.",
+            "- you were friends with that thing?",
+            "- it's a great guy when you get to know it.",
             "anyway, i'm not going to forgive you for what you did. you shall meet the same fate as my friend.",
             "to give you the slightest chance to win, time only moves when you do.",
             "quite a \"surprise\", no?",
-            "why does everybody keep bringing that up?",
-            "fear not, it won't matter once you're dead. goodbye."
+            "- why does everybody keep bringing that up?",
+            "- fear not, it won't matter once you're dead. goodbye."
         },
         enemy = function ()
             BasicEnemy:new({
@@ -135,18 +135,45 @@ function currentLevel() return levels[levelIndex] end
 
 function nextLevel()
     levelIndex = levelIndex + 1
-    player = currentLevel().player()
-    enemy = currentLevel().enemy()
-    enemy:init()
-    music(currentLevel().music)
 
-    change_state(GAME_STATES.DIALOGUE)
+    if levelIndex <= #levels then
+        player = currentLevel().player()
+        enemy = currentLevel().enemy()
+        enemy:init()
+        music(currentLevel().music)
 
-    for i,text in ipairs(currentLevel().dialogue) do
-        dtb_disp(text, function ()
-            if i >= #currentLevel().dialogue then
-                change_state(GAME_STATES.GAME)
-            end
-        end)        
+        change_state(GAME_STATES.DIALOGUE)
+
+        for i,text in ipairs(currentLevel().dialogue) do
+            dtb_disp(text, function ()
+                if i >= #currentLevel().dialogue then
+                    change_state(GAME_STATES.GAME)
+                end
+            end)        
+        end
+    else
+        -- game is finished !
+        change_state(GAME_STATES.ENDING)
+
+        levelIndex = 0
+
+        music(MUSIC.ARPUMENT)
+
+        local totalTime = time() - startTime
+
+        local dialogue = {
+            "you did it!",
+            "you've managed to avoid the fine by killing everyone!",
+            "you must be so proud of yourself, i sure hope this was worth it",
+            "your time was ".. totalTime.." seconds",
+        }
+
+        for i,text in ipairs(dialogue) do
+            dtb_disp(text, function ()
+                if i >= #dialogue then
+                    change_state(GAME_STATES.MAIN_MENU)
+                end
+            end)        
+        end
     end
 end

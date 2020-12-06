@@ -5,6 +5,7 @@ draw_fun = {
     [GAME_STATES.DIALOGUE] = function() draw_dialogue() end,
     [GAME_STATES.GAME] = function() draw_game() end,
     [GAME_STATES.GAME_OVER] = function() draw_gameover() end,
+    [GAME_STATES.ENDING] = function() draw_ending() end,
 }
 
 function _draw()
@@ -86,4 +87,9 @@ function draw_gameover()
     local text2 = "parking inspectors"
     print(text, text_x_pos(text), (SCREEN_SIZE/2)+16)
     print(text2, text_x_pos(text2), (SCREEN_SIZE/2)+22)
+end
+
+function draw_ending()
+    cls(0)
+    dtb_draw()
 end
