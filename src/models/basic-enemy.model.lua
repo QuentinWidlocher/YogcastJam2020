@@ -14,8 +14,9 @@ BasicEnemy = GameObject:new({
     hurtCooldown = { value = 0, max = 5 },
     shootingType = shallowCopy(DefaultShootingType),
     movingType = shallowCopy(DefaultEnemyMovingType),
-    phase = 5,
+    phase = 1,
     __type = "BasicEnemy",
+    phases = {}
 })
 
 function BasicEnemy:update()
@@ -26,6 +27,15 @@ function BasicEnemy:update()
 end
 
 function BasicEnemy:init()
+    self.phase = #self.phases
+    self:initPhase(#self.phases - self.phase + 1)
+end
+
+function BasicEnemy:initPhase(phase)
+    self.shootingType = self.phases[phase].shootingType
+    self.shootingType.cooldown.max = self.phases[phase].bulletCooldown
+    self.shootingType.speed = self.phases[phase].bulletSpeed
+    self.hp.max = self.phases[phase].hpMax
 end
 
 function BasicEnemy:shoot()
@@ -61,8 +71,10 @@ function BasicEnemy:hurt(dmg)
 
     if self.hp.value <= 0 then
         self.phase = self.phase - 1
+        self:initPhase(#self.phases - self.phase + 1)
         self.hp.value = self.hp.max
         shake = 1.5
+        bulletTimeout = 60
     end
 end
 

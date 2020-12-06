@@ -261,3 +261,15 @@ end
 
 function inc(x, v) return x + v end
 function invert(x) return -x end
+
+function lerp(a, b, t, speed)
+    local poop = a + t * speed * (b - a)
+    --Gotta make sure the poop isn't too big
+    if a < b then
+        if poop >= b then return b
+        else return poop end
+    else
+        if poop <= b then return b
+        else return poop end
+    end
+end

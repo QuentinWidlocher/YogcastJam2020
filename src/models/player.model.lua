@@ -20,6 +20,11 @@ Player = GameObject:new({
     vx = 0,
     vy = 0,
 
+    gridx = 8,
+    gridy = 8,
+    origx = fromOct(8),
+    origy = fromOct(8),
+
     hp = { value = 100, max = 100 }, -- can be damaged when value == max
     hurtCooldown = { value = 20, max = 20 },
 
@@ -27,7 +32,7 @@ Player = GameObject:new({
     shootingCooldown = { value = 0, max = 4 }, -- can shoot when value == max
     shootingType = DefaultShootingType,
 
-    movingType = GridPlayerMovingType,
+    movingType = DefaultPlayerMovingType,
 
     flameCounter = 0,
     flameSprite = SPRITES.FLAMES.OFF,

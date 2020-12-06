@@ -25,4 +25,17 @@ function update_bullets()
 
     local function deleteBullet(i) deli(bulletPool, i) end
     foreach(bulletsToDelete, deleteBullet)
+
+    bulletClearIfTimeout()
+end
+
+bulletTimeout = 0
+
+function bulletClearIfTimeout()
+    if bulletTimeout > 0 then
+        for k in pairs(bulletPool) do
+            bulletPool[k] = nil
+        end
+    end
+    bulletTimeout -= 1
 end

@@ -9,8 +9,14 @@ function init_enemies()
         h = fromOct(2),
         x = SCREEN_SIZE / 2,
         y = SCREEN_SIZE / 4,
-        shootingType = shallowCopy(TrishotShootingType)
+        phases = {
+            {shootingType = DefaultShootingType, bulletCooldown = 10, bulletSpeed = 2, hpMax = 70},
+            {shootingType = DefaultShootingType, bulletCooldown = 5, bulletSpeed = 5, hpMax = 50},
+            {shootingType = HomingShootingType, bulletCooldown = 10, bulletSpeed = 2, hpMax = 30},
+            {shootingType = TrishotShootingType, bulletCooldown = 3, bulletSpeed = 4, hpMax = 70},
+        }
     })
+    enemy:init()
 
     add(enemies, enemy)
 
