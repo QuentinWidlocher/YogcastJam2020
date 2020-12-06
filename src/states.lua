@@ -1,10 +1,13 @@
 -- State Machine
 GAME_STATES = {
-    default = 0,
+    MAIN_MENU = 0,
+    HELP_SCREEN = 1,
+    GAME = 2,
+    GAME_OVER = 3,
 }
 
 ---@type integer
-STATE = GAME_STATES.default
+STATE = GAME_STATES.MAIN_MENU
 
 ---@param new_state integer
 function change_state(new_state)
