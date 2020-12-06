@@ -35,7 +35,7 @@ levels = {
             y = (SCREEN_SIZE/4),
             movingType = DefaultEnemyMovingType:new(),
             phases = {
-                {shootingType = DefaultShootingType:new(), bulletCooldown = 20, bulletSpeed = 1.5, hpMax = 50, damage = 10},
+                {shootingType = DefaultShootingType:new(), bulletCooldown = 20, bulletSpeed = 1.5, hpMax = 50, damage = 5},
                 {shootingType = DefaultShootingType:new(), bulletCooldown = 10, bulletSpeed = 2, hpMax = 50, damage = 10},
                 {shootingType = HomingShootingType:new(), bulletCooldown = 15, bulletSpeed = 1, hpMax = 50, damage = 15},
                 {shootingType = TrishotShootingType:new(), bulletCooldown = 10, bulletSpeed = 3, hpMax = 50, damage = 7},
@@ -46,11 +46,11 @@ levels = {
     {
         player = function ()
             return Player:new({
-            x = SCREEN_SIZE/2,
-            y = SCREEN_SIZE/2,
+            x = SCREEN_SIZE/2 - 4,
+            y = ((SCREEN_SIZE/4)*3) - fromOct(1),
             shootingType = DefaultShootingType:new(),
             movingType = GridPlayerMovingType:new(),
-            hp = shallowCopy({ value = 150, max = 150 })
+            hp = shallowCopy({ value = 100, max = 100 })
         })
         end,
         music = MUSIC.HIJINX,
@@ -85,7 +85,7 @@ levels = {
             phases = {
                 {shootingType = DefaultShootingType:new(), bulletCooldown = 20, bulletSpeed = 1.5, hpMax = 50, damage = 10},
                 {shootingType = BrokenTentacleShootingType:new(), bulletCooldown = 2, bulletSpeed = 3, hpMax = 40, damage = 5},
-                {shootingType = SlowfillShootingType:new(), bulletCooldown = 20, bulletSpeed = 0.03, hpMax = 70, damage = 10},
+                {shootingType = SlowfillShootingType:new(), bulletCooldown = 20, bulletSpeed = 0.03, hpMax = 70, damage = 20},
                 {shootingType = TrishotShootingType:new(), bulletCooldown = 15, bulletSpeed = 4, hpMax = 50, damage = 20},
             }
         })
@@ -94,11 +94,11 @@ levels = {
     {
         player = function ()
             return Player:new({
-            x = SCREEN_SIZE/2,
-            y = SCREEN_SIZE/2,
+            x = SCREEN_SIZE/2 - 4,
+            y = ((SCREEN_SIZE/4)*3) - fromOct(1),
             shootingType = SuperhotShootingType:new(),
             movingType = SuperhotPlayerMovingType:new(),
-            hp = shallowCopy({ value = 150, max = 150 })
+            hp = shallowCopy({ value = 100, max = 100 })
         })
         end,
         music = MUSIC.OUT_OF_CONTROL,
@@ -125,7 +125,7 @@ levels = {
             movingType = SuperhotEnemyMovingType:new(),
             phases = {
                 {shootingType = SuperhotShootingType:new({ baseShootingType = TrishotShootingType:new()}), bulletCooldown = 8, bulletSpeed = 4, hpMax = 40, damage = 10},
-                {shootingType = SuperhotShootingType:new({ baseShootingType = BulletstreamShootingType:new()}), bulletCooldown = 15, bulletSpeed = 1, hpMax = 40, damage = 5},
+                {shootingType = SuperhotShootingType:new({ baseShootingType = BulletstreamShootingType:new()}), bulletCooldown = 30, bulletSpeed = 1, hpMax = 40, damage = 5},
                 {shootingType = SuperhotShootingType:new({ baseShootingType = BrokenTentacleShootingType:new()}), bulletCooldown = 1, bulletSpeed = 7, hpMax = 40, damage = 10},
                 {shootingType = SuperhotShootingType:new({ baseShootingType = DefaultShootingType:new()}), bulletCooldown = 3, bulletSpeed = 3, hpMax = 30, damage = 5},
             }
